@@ -1,0 +1,13 @@
+C:\Users\Marcos Aurelio\Documents\GreenSoft\GreenSoft_Balcao\GreenSoft_Balcao\bin\Debug\GreenSoft_Balcao.exe.config
+C:\Users\Marcos Aurelio\Documents\GreenSoft\GreenSoft_Balcao\GreenSoft_Balcao\bin\Debug\GreenSoft_Balcao.exe
+C:\Users\Marcos Aurelio\Documents\GreenSoft\GreenSoft_Balcao\GreenSoft_Balcao\bin\Debug\GreenSoft_Balcao.pdb
+C:\Users\Marcos Aurelio\Documents\GreenSoft\GreenSoft_Balcao\GreenSoft_Balcao\bin\Debug\EntityFramework.dll
+C:\Users\Marcos Aurelio\Documents\GreenSoft\GreenSoft_Balcao\GreenSoft_Balcao\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Marcos Aurelio\Documents\GreenSoft\GreenSoft_Balcao\GreenSoft_Balcao\bin\Debug\EntityFramework.xml
+C:\Users\Marcos Aurelio\Documents\GreenSoft\GreenSoft_Balcao\GreenSoft_Balcao\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Marcos Aurelio\Documents\GreenSoft\GreenSoft_Balcao\GreenSoft_Balcao\obj\Debug\GreenSoft_Balcao.csprojResolveAssemblyReference.cache
+C:\Users\Marcos Aurelio\Documents\GreenSoft\GreenSoft_Balcao\GreenSoft_Balcao\obj\Debug\GreenSoft_Balcao.Form1.resources
+C:\Users\Marcos Aurelio\Documents\GreenSoft\GreenSoft_Balcao\GreenSoft_Balcao\obj\Debug\GreenSoft_Balcao.Properties.Resources.resources
+C:\Users\Marcos Aurelio\Documents\GreenSoft\GreenSoft_Balcao\GreenSoft_Balcao\obj\Debug\GreenSoft_Balcao.csproj.GenerateResource.Cache
+C:\Users\Marcos Aurelio\Documents\GreenSoft\GreenSoft_Balcao\GreenSoft_Balcao\obj\Debug\GreenSoft_Balcao.exe
+C:\Users\Marcos Aurelio\Documents\GreenSoft\GreenSoft_Balcao\GreenSoft_Balcao\obj\Debug\GreenSoft_Balcao.pdb

@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbGreenSoftFinalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="Cliente_ID" />
+    </Key>
+    <Property Name="Cliente_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Cpf" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="DtNascimento" Type="date" Nullable="false" />
+    <Property Name="Rua" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Numero" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Bairro" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Cep" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Uf" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="Pais" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="DtCadastro" Type="datetime" Nullable="false" />
+    <Property Name="Ativo" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Cooperativa">
+    <Key>
+      <PropertyRef Name="Cooperativa_ID" />
+    </Key>
+    <Property Name="Cooperativa_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Razao" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Cnpj" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Ativo" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pedido">
+    <Key>
+      <PropertyRef Name="Pedido_ID" />
+    </Key>
+    <Property Name="Pedido_ID" Type="int" Nullable="false" />
+    <Property Name="Cliente_ID" Type="int" Nullable="false" />
+    <Property Name="Cooperativa_ID" Type="int" Nullable="false" />
+    <Property Name="Usuario_ID" Type="int" Nullable="false" />
+    <Property Name="ValorTotal" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PedidoItem">
+    <Key>
+      <PropertyRef Name="Seq_ID" />
+    </Key>
+    <Property Name="Seq_ID" Type="int" Nullable="false" />
+    <Property Name="Pedido_ID" Type="int" Nullable="false" />
+    <Property Name="Produto_ID" Type="int" />
+    <Property Name="Qtde" Type="int" Nullable="false" />
+    <Property Name="Valor" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="ValorTotal" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Produto">
+    <Key>
+      <PropertyRef Name="Produto_ID" />
+    </Key>
+    <Property Name="Produto_ID" Type="int" Nullable="false" />
+    <Property Name="Descricao" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Valor" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Unidade" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="Estoque" Type="int" Nullable="false" />
+    <Property Name="Ativo" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'dbGreenSoftFinal.dbo.ProdutoCoperativa' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ProdutoCoperativa">
+    <Key>
+      <PropertyRef Name="Cooperativa_ID" />
+      <PropertyRef Name="Produto_ID" />
+      <PropertyRef Name="Ativo" />
+    </Key>
+    <Property Name="Cooperativa_ID" Type="int" Nullable="false" />
+    <Property Name="Produto_ID" Type="int" Nullable="false" />
+    <Property Name="Ativo" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="Usuario_ID" />
+    </Key>
+    <Property Name="Usuario_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Senha" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Ativo" Type="bit" Nullable="false" />
+    <Property Name="Cooperativa_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Pedido_Cliente">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+    <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="Cliente_ID" />
+      </Principal>
+      <Dependent Role="Pedido">
+        <PropertyRef Name="Cliente_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pedido_Cooperativa">
+    <End Role="Cooperativa" Type="Self.Cooperativa" Multiplicity="1" />
+    <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cooperativa">
+        <PropertyRef Name="Cooperativa_ID" />
+      </Principal>
+      <Dependent Role="Pedido">
+        <PropertyRef Name="Cooperativa_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pedido_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Usuario_ID" />
+      </Principal>
+      <Dependent Role="Pedido">
+        <PropertyRef Name="Usuario_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PedidoItem_Pedido">
+    <End Role="Pedido" Type="Self.Pedido" Multiplicity="1" />
+    <End Role="PedidoItem" Type="Self.PedidoItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pedido">
+        <PropertyRef Name="Pedido_ID" />
+      </Principal>
+      <Dependent Role="PedidoItem">
+        <PropertyRef Name="Pedido_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PedidoItem_Produto">
+    <End Role="Produto" Type="Self.Produto" Multiplicity="0..1" />
+    <End Role="PedidoItem" Type="Self.PedidoItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Produto">
+        <PropertyRef Name="Produto_ID" />
+      </Principal>
+      <Dependent Role="PedidoItem">
+        <PropertyRef Name="Produto_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProdutoCoperativa_Cooperativa">
+    <End Role="Cooperativa" Type="Self.Cooperativa" Multiplicity="1" />
+    <End Role="ProdutoCoperativa" Type="Self.ProdutoCoperativa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cooperativa">
+        <PropertyRef Name="Cooperativa_ID" />
+      </Principal>
+      <Dependent Role="ProdutoCoperativa">
+        <PropertyRef Name="Cooperativa_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProdutoCoperativa_Produto">
+    <End Role="Produto" Type="Self.Produto" Multiplicity="1" />
+    <End Role="ProdutoCoperativa" Type="Self.ProdutoCoperativa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Produto">
+        <PropertyRef Name="Produto_ID" />
+      </Principal>
+      <Dependent Role="ProdutoCoperativa">
+        <PropertyRef Name="Produto_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuario_Cooperativa">
+    <End Role="Cooperativa" Type="Self.Cooperativa" Multiplicity="1" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cooperativa">
+        <PropertyRef Name="Cooperativa_ID" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="Cooperativa_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbGreenSoftFinalModelStoreContainer">
+    <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cooperativa" EntityType="Self.Cooperativa" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pedido" EntityType="Self.Pedido" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PedidoItem" EntityType="Self.PedidoItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Produto" EntityType="Self.Produto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProdutoCoperativa" EntityType="Self.ProdutoCoperativa" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ProdutoCoperativa].[Cooperativa_ID] AS [Cooperativa_ID], 
+    [ProdutoCoperativa].[Produto_ID] AS [Produto_ID], 
+    [ProdutoCoperativa].[Ativo] AS [Ativo]
+    FROM [dbo].[ProdutoCoperativa] AS [ProdutoCoperativa]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Pedido_Cliente" Association="Self.FK_Pedido_Cliente">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="Pedido" EntitySet="Pedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pedido_Cooperativa" Association="Self.FK_Pedido_Cooperativa">
+      <End Role="Cooperativa" EntitySet="Cooperativa" />
+      <End Role="Pedido" EntitySet="Pedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pedido_Usuario" Association="Self.FK_Pedido_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Pedido" EntitySet="Pedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PedidoItem_Pedido" Association="Self.FK_PedidoItem_Pedido">
+      <End Role="Pedido" EntitySet="Pedido" />
+      <End Role="PedidoItem" EntitySet="PedidoItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PedidoItem_Produto" Association="Self.FK_PedidoItem_Produto">
+      <End Role="Produto" EntitySet="Produto" />
+      <End Role="PedidoItem" EntitySet="PedidoItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProdutoCoperativa_Cooperativa" Association="Self.FK_ProdutoCoperativa_Cooperativa">
+      <End Role="Cooperativa" EntitySet="Cooperativa" />
+      <End Role="ProdutoCoperativa" EntitySet="ProdutoCoperativa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProdutoCoperativa_Produto" Association="Self.FK_ProdutoCoperativa_Produto">
+      <End Role="Produto" EntitySet="Produto" />
+      <End Role="ProdutoCoperativa" EntitySet="ProdutoCoperativa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuario_Cooperativa" Association="Self.FK_Usuario_Cooperativa">
+      <End Role="Cooperativa" EntitySet="Cooperativa" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
