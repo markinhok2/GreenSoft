@@ -78,14 +78,14 @@ namespace GreenSoft_Balcao.View
                 bProduto.Visible = false;
                 bCliente.Visible = true;
                 bCompras.Visible = true;
-                this.Text = "GreeSoft - Versão Balcão";
+                this.Text = "GreenSoft - Versão Balcão";
             }
             else
             {
                 bProduto.Visible = true;
                 bCliente.Visible = false;
                 bCompras.Visible = false;
-                this.Text = "GreeSoft - Versão Escritório";
+                this.Text = "GreenSoft - Versão Escritório";
             }
             if(clsStatic.Usuario.Usuario_ID == 1)
             {
@@ -93,7 +93,7 @@ namespace GreenSoft_Balcao.View
                 bProduto.Visible = true;
                 bCliente.Visible = true;
                 bCompras.Visible = true;
-                this.Text = "GreeSoft - Versão Admin";
+                this.Text = "GreenSoft - Versão Admin";
             }
         }
 
