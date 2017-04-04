@@ -70,6 +70,7 @@
             this.dgvProdutos.Size = new System.Drawing.Size(595, 349);
             this.dgvProdutos.TabIndex = 2;
             this.dgvProdutos.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvProdutos_CellMouseDoubleClick);
+            this.dgvProdutos.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvProdutos_KeyDown);
             // 
             // fBusca_Produto
             // 

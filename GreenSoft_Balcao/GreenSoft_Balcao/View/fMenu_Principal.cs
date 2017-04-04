@@ -35,7 +35,7 @@ namespace GreenSoft_Balcao.View
 
         private void btnSair_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Deseja sair da aplicação?", "Mensagem", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Deseja sair da aplicação?", "Mensagem", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
                 clsStatic.bSaiu = true;
                 this.Close();
@@ -99,12 +99,16 @@ namespace GreenSoft_Balcao.View
 
         private void bTrocaUser_Click(object sender, EventArgs e)
         {
-            clsStatic.bSolicitaLogin = true;
-            this.Close();
+            if (MessageBox.Show("Deseja trocar de usuário?", "Mensagem", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            {
+                clsStatic.bSolicitaLogin = true;
+                this.Close();
+            }
         }
 
         private void btnCompra_Click(object sender, EventArgs e)
         {
+            pnCalendario.Visible = false;
             fCompra frmCompra = new fCompra();
             frmCompra.MdiParent = this;
             frmCompra.Show();
@@ -134,6 +138,16 @@ namespace GreenSoft_Balcao.View
             fCalc.MdiParent = this;
             fCalc.Show();
             // System.Diagnostics.Process p = System.Diagnostics.Process.Start("calc.exe");
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            pnCalendario.Visible = false;
+        }
+
+        private void btnCalendario_Click(object sender, EventArgs e)
+        {
+            pnCalendario.Visible = true;
         }
     }
 }

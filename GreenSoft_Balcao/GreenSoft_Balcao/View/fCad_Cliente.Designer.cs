@@ -37,6 +37,8 @@
             this.btnDelete = new System.Windows.Forms.ToolStripButton();
             this.btnBuscar = new System.Windows.Forms.ToolStripButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.btnOk = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.btnAddFoto = new System.Windows.Forms.Button();
             this.imgCliente = new System.Windows.Forms.PictureBox();
@@ -66,9 +68,8 @@
             this.txtCPF = new System.Windows.Forms.TextBox();
             this.txtNome = new System.Windows.Forms.TextBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.btnOk = new System.Windows.Forms.Button();
-            this.label13 = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.imgList = new System.Windows.Forms.ImageList(this.components);
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgCliente)).BeginInit();
@@ -76,6 +77,7 @@
             // 
             // toolStrip1
             // 
+            this.toolStrip1.BackColor = System.Drawing.Color.PowderBlue;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(22, 22);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnAdd,
@@ -85,6 +87,7 @@
             this.btnBuscar});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Padding = new System.Windows.Forms.Padding(0);
             this.toolStrip1.Size = new System.Drawing.Size(784, 29);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
@@ -178,6 +181,33 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cliente";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(610, 28);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(31, 13);
+            this.label13.TabIndex = 15;
+            this.label13.Text = "Foto";
+            // 
+            // btnOk
+            // 
+            this.btnOk.BackColor = System.Drawing.Color.Transparent;
+            this.btnOk.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnOk.BackgroundImage")));
+            this.btnOk.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnOk.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOk.FlatAppearance.BorderSize = 0;
+            this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOk.Location = new System.Drawing.Point(613, 143);
+            this.btnOk.Margin = new System.Windows.Forms.Padding(0);
+            this.btnOk.Name = "btnOk";
+            this.btnOk.Size = new System.Drawing.Size(25, 25);
+            this.btnOk.TabIndex = 28;
+            this.toolTip1.SetToolTip(this.btnOk, "Adicione uma foto");
+            this.btnOk.UseVisualStyleBackColor = false;
+            this.btnOk.Visible = false;
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // label12
             // 
@@ -437,40 +467,20 @@
             this.txtNome.Size = new System.Drawing.Size(405, 22);
             this.txtNome.TabIndex = 0;
             // 
-            // btnOk
-            // 
-            this.btnOk.BackColor = System.Drawing.Color.Transparent;
-            this.btnOk.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnOk.BackgroundImage")));
-            this.btnOk.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnOk.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOk.FlatAppearance.BorderSize = 0;
-            this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOk.Location = new System.Drawing.Point(613, 143);
-            this.btnOk.Margin = new System.Windows.Forms.Padding(0);
-            this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(25, 25);
-            this.btnOk.TabIndex = 28;
-            this.toolTip1.SetToolTip(this.btnOk, "Adicione uma foto");
-            this.btnOk.UseVisualStyleBackColor = false;
-            this.btnOk.Visible = false;
-            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(610, 28);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(31, 13);
-            this.label13.TabIndex = 15;
-            this.label13.Text = "Foto";
-            // 
             // statusStrip1
             // 
+            this.statusStrip1.BackColor = System.Drawing.Color.PowderBlue;
             this.statusStrip1.Location = new System.Drawing.Point(0, 309);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(784, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // imgList
+            // 
+            this.imgList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgList.ImageStream")));
+            this.imgList.TransparentColor = System.Drawing.Color.Transparent;
+            this.imgList.Images.SetKeyName(0, "1491301451_photo.png");
             // 
             // fCad_Cliente
             // 
@@ -541,5 +551,6 @@
         private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ImageList imgList;
     }
 }

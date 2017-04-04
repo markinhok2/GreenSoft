@@ -38,27 +38,35 @@
             this.bCompras = new System.Windows.Forms.ToolStripDropDownButton();
             this.btnCompra = new System.Windows.Forms.ToolStripMenuItem();
             this.bRelatorios = new System.Windows.Forms.ToolStripDropDownButton();
+            this.btnFerramentas = new System.Windows.Forms.ToolStripDropDownButton();
+            this.btnCalculadora = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnCalendario = new System.Windows.Forms.ToolStripMenuItem();
             this.bmanutencao = new System.Windows.Forms.ToolStripDropDownButton();
             this.btnCadastrarUsuário = new System.Windows.Forms.ToolStripMenuItem();
             this.bTrocaUser = new System.Windows.Forms.ToolStripDropDownButton();
+            this.btnSair = new System.Windows.Forms.ToolStripDropDownButton();
             this.btnAjuda = new System.Windows.Forms.ToolStripDropDownButton();
             this.btnSobre = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnSair = new System.Windows.Forms.ToolStripDropDownButton();
             this.statusPrincipal = new System.Windows.Forms.StatusStrip();
             this.lblUsuario = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblCooperativa = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblData = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblHora = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.btnFerramentas = new System.Windows.Forms.ToolStripDropDownButton();
-            this.btnCalculadora = new System.Windows.Forms.ToolStripMenuItem();
+            this.pnCalendario = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
+            this.btnClose = new System.Windows.Forms.Button();
             this.toolPrincipal.SuspendLayout();
             this.statusPrincipal.SuspendLayout();
+            this.pnCalendario.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // toolPrincipal
             // 
-            this.toolPrincipal.BackColor = System.Drawing.Color.PaleGreen;
+            this.toolPrincipal.BackColor = System.Drawing.Color.PowderBlue;
             this.toolPrincipal.GripMargin = new System.Windows.Forms.Padding(0);
             this.toolPrincipal.ImageScalingSize = new System.Drawing.Size(40, 40);
             this.toolPrincipal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -74,7 +82,7 @@
             this.toolPrincipal.Location = new System.Drawing.Point(0, 0);
             this.toolPrincipal.Name = "toolPrincipal";
             this.toolPrincipal.Padding = new System.Windows.Forms.Padding(0);
-            this.toolPrincipal.Size = new System.Drawing.Size(834, 62);
+            this.toolPrincipal.Size = new System.Drawing.Size(1022, 62);
             this.toolPrincipal.TabIndex = 0;
             this.toolPrincipal.Text = "Menu";
             // 
@@ -91,8 +99,9 @@
             // 
             // btnCadProduto
             // 
+            this.btnCadProduto.Image = ((System.Drawing.Image)(resources.GetObject("btnCadProduto.Image")));
             this.btnCadProduto.Name = "btnCadProduto";
-            this.btnCadProduto.Size = new System.Drawing.Size(170, 22);
+            this.btnCadProduto.Size = new System.Drawing.Size(194, 46);
             this.btnCadProduto.Text = "&Cadastrar Produto";
             this.btnCadProduto.Click += new System.EventHandler(this.btnCadProduto_Click);
             // 
@@ -109,8 +118,9 @@
             // 
             // btnCadCliente
             // 
+            this.btnCadCliente.Image = ((System.Drawing.Image)(resources.GetObject("btnCadCliente.Image")));
             this.btnCadCliente.Name = "btnCadCliente";
-            this.btnCadCliente.Size = new System.Drawing.Size(164, 22);
+            this.btnCadCliente.Size = new System.Drawing.Size(188, 46);
             this.btnCadCliente.Text = "&Cadastrar Cliente";
             this.btnCadCliente.Click += new System.EventHandler(this.btnCadCliente_Click);
             // 
@@ -127,8 +137,9 @@
             // 
             // btnCompra
             // 
+            this.btnCompra.Image = ((System.Drawing.Image)(resources.GetObject("btnCompra.Image")));
             this.btnCompra.Name = "btnCompra";
-            this.btnCompra.Size = new System.Drawing.Size(152, 22);
+            this.btnCompra.Size = new System.Drawing.Size(176, 46);
             this.btnCompra.Text = "Iniciar Compra";
             this.btnCompra.Click += new System.EventHandler(this.btnCompra_Click);
             // 
@@ -140,6 +151,34 @@
             this.bRelatorios.Size = new System.Drawing.Size(72, 59);
             this.bRelatorios.Text = "&Relatórios";
             this.bRelatorios.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // btnFerramentas
+            // 
+            this.btnFerramentas.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnCalculadora,
+            this.btnCalendario});
+            this.btnFerramentas.Image = ((System.Drawing.Image)(resources.GetObject("btnFerramentas.Image")));
+            this.btnFerramentas.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnFerramentas.Name = "btnFerramentas";
+            this.btnFerramentas.Size = new System.Drawing.Size(85, 59);
+            this.btnFerramentas.Text = "&Ferramentas";
+            this.btnFerramentas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // btnCalculadora
+            // 
+            this.btnCalculadora.Image = ((System.Drawing.Image)(resources.GetObject("btnCalculadora.Image")));
+            this.btnCalculadora.Name = "btnCalculadora";
+            this.btnCalculadora.Size = new System.Drawing.Size(176, 46);
+            this.btnCalculadora.Text = "&Calculadora";
+            this.btnCalculadora.Click += new System.EventHandler(this.btnCalculadora_Click);
+            // 
+            // btnCalendario
+            // 
+            this.btnCalendario.Image = ((System.Drawing.Image)(resources.GetObject("btnCalendario.Image")));
+            this.btnCalendario.Name = "btnCalendario";
+            this.btnCalendario.Size = new System.Drawing.Size(176, 46);
+            this.btnCalendario.Text = "Ca&lendário";
+            this.btnCalendario.Click += new System.EventHandler(this.btnCalendario_Click);
             // 
             // bmanutencao
             // 
@@ -154,8 +193,9 @@
             // 
             // btnCadastrarUsuário
             // 
+            this.btnCadastrarUsuário.Image = ((System.Drawing.Image)(resources.GetObject("btnCadastrarUsuário.Image")));
             this.btnCadastrarUsuário.Name = "btnCadastrarUsuário";
-            this.btnCadastrarUsuário.Size = new System.Drawing.Size(167, 22);
+            this.btnCadastrarUsuário.Size = new System.Drawing.Size(191, 46);
             this.btnCadastrarUsuário.Text = "&Cadastrar Usuário";
             this.btnCadastrarUsuário.Click += new System.EventHandler(this.btnCadastrarUsuário_Click);
             // 
@@ -168,6 +208,16 @@
             this.bTrocaUser.Text = "&Trocar Usuário";
             this.bTrocaUser.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.bTrocaUser.Click += new System.EventHandler(this.bTrocaUser_Click);
+            // 
+            // btnSair
+            // 
+            this.btnSair.Image = ((System.Drawing.Image)(resources.GetObject("btnSair.Image")));
+            this.btnSair.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSair.Name = "btnSair";
+            this.btnSair.Size = new System.Drawing.Size(53, 59);
+            this.btnSair.Text = "&Sair";
+            this.btnSair.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
             // 
             // btnAjuda
             // 
@@ -182,33 +232,24 @@
             // 
             // btnSobre
             // 
+            this.btnSobre.Image = ((System.Drawing.Image)(resources.GetObject("btnSobre.Image")));
             this.btnSobre.Name = "btnSobre";
-            this.btnSobre.Size = new System.Drawing.Size(104, 22);
+            this.btnSobre.Size = new System.Drawing.Size(176, 46);
             this.btnSobre.Text = "&Sobre";
             this.btnSobre.Click += new System.EventHandler(this.btnSobre_Click);
             // 
-            // btnSair
-            // 
-            this.btnSair.Image = ((System.Drawing.Image)(resources.GetObject("btnSair.Image")));
-            this.btnSair.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnSair.Name = "btnSair";
-            this.btnSair.Size = new System.Drawing.Size(53, 59);
-            this.btnSair.Text = "&Sair";
-            this.btnSair.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
-            // 
             // statusPrincipal
             // 
-            this.statusPrincipal.BackColor = System.Drawing.Color.PaleGreen;
+            this.statusPrincipal.BackColor = System.Drawing.Color.PowderBlue;
             this.statusPrincipal.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.statusPrincipal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblUsuario,
             this.lblCooperativa,
             this.lblData,
             this.lblHora});
-            this.statusPrincipal.Location = new System.Drawing.Point(0, 274);
+            this.statusPrincipal.Location = new System.Drawing.Point(0, 568);
             this.statusPrincipal.Name = "statusPrincipal";
-            this.statusPrincipal.Size = new System.Drawing.Size(834, 28);
+            this.statusPrincipal.Size = new System.Drawing.Size(1022, 28);
             this.statusPrincipal.TabIndex = 1;
             this.statusPrincipal.Text = "statusStrip1";
             // 
@@ -262,29 +303,68 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // btnFerramentas
+            // pnCalendario
             // 
-            this.btnFerramentas.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnCalculadora});
-            this.btnFerramentas.Image = ((System.Drawing.Image)(resources.GetObject("btnFerramentas.Image")));
-            this.btnFerramentas.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnFerramentas.Name = "btnFerramentas";
-            this.btnFerramentas.Size = new System.Drawing.Size(85, 59);
-            this.btnFerramentas.Text = "&Ferramentas";
-            this.btnFerramentas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.pnCalendario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnCalendario.BackColor = System.Drawing.Color.LightGreen;
+            this.pnCalendario.Controls.Add(this.pictureBox1);
+            this.pnCalendario.Controls.Add(this.label1);
+            this.pnCalendario.Controls.Add(this.monthCalendar1);
+            this.pnCalendario.Controls.Add(this.btnClose);
+            this.pnCalendario.Location = new System.Drawing.Point(774, 354);
+            this.pnCalendario.Name = "pnCalendario";
+            this.pnCalendario.Size = new System.Drawing.Size(246, 212);
+            this.pnCalendario.TabIndex = 3;
             // 
-            // btnCalculadora
+            // pictureBox1
             // 
-            this.btnCalculadora.Name = "btnCalculadora";
-            this.btnCalculadora.Size = new System.Drawing.Size(152, 22);
-            this.btnCalculadora.Text = "&Calculadora";
-            this.btnCalculadora.Click += new System.EventHandler(this.btnCalculadora_Click);
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(59, 5);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(91, 11);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(82, 19);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Calendário";
+            // 
+            // monthCalendar1
+            // 
+            this.monthCalendar1.BackColor = System.Drawing.SystemColors.Window;
+            this.monthCalendar1.Location = new System.Drawing.Point(9, 38);
+            this.monthCalendar1.Name = "monthCalendar1";
+            this.monthCalendar1.TabIndex = 2;
+            // 
+            // btnClose
+            // 
+            this.btnClose.BackColor = System.Drawing.Color.Transparent;
+            this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Location = new System.Drawing.Point(220, 1);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(25, 25);
+            this.btnClose.TabIndex = 1;
+            this.btnClose.Text = "X";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // fMenu_Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(834, 302);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(1022, 596);
+            this.Controls.Add(this.pnCalendario);
             this.Controls.Add(this.statusPrincipal);
             this.Controls.Add(this.toolPrincipal);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -300,6 +380,9 @@
             this.toolPrincipal.PerformLayout();
             this.statusPrincipal.ResumeLayout(false);
             this.statusPrincipal.PerformLayout();
+            this.pnCalendario.ResumeLayout(false);
+            this.pnCalendario.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -329,5 +412,11 @@
         private System.Windows.Forms.ToolStripMenuItem btnSobre;
         private System.Windows.Forms.ToolStripDropDownButton btnFerramentas;
         private System.Windows.Forms.ToolStripMenuItem btnCalculadora;
+        private System.Windows.Forms.Panel pnCalendario;
+        private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.MonthCalendar monthCalendar1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripMenuItem btnCalendario;
     }
 }

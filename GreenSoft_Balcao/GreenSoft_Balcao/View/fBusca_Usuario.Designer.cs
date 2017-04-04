@@ -70,6 +70,7 @@
             this.dgvUsuarios.Size = new System.Drawing.Size(595, 349);
             this.dgvUsuarios.TabIndex = 2;
             this.dgvUsuarios.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvProdutos_CellMouseDoubleClick);
+            this.dgvUsuarios.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvUsuarios_KeyDown);
             // 
             // fBusca_Usuario
             // 

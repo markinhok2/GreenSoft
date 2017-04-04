@@ -70,6 +70,7 @@
             this.dgvClientes.Size = new System.Drawing.Size(595, 349);
             this.dgvClientes.TabIndex = 2;
             this.dgvClientes.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvClientes_CellMouseDoubleClick);
+            this.dgvClientes.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvClientes_KeyDown);
             // 
             // fBusca_Cliente
             // 

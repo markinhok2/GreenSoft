@@ -55,14 +55,28 @@ namespace GreenSoft_Balcao.View
             if(e.KeyCode == Keys.Enter)
             {
                 FindClient();
+                dgvClientes.Focus();
             }
         }
 
         private void dgvClientes_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            int idCliente = (int)dgvClientes.Rows[e.RowIndex].Cells[0].Value;
+            RetornaCliente(e.RowIndex);
+        }
 
-            using(var dx = new dbGreenSoftFinalEntities())
+        private void dgvClientes_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                RetornaCliente(dgvClientes.SelectedRows[0].Index);
+            }
+        }
+
+        private void RetornaCliente(int index)
+        {
+            int idCliente = (int)dgvClientes.Rows[index].Cells[0].Value;
+
+            using (var dx = new dbGreenSoftFinalEntities())
             {
                 clsStatic.cliente = dx.Cliente.FirstOrDefault(x => x.Cliente_ID == idCliente);
             }

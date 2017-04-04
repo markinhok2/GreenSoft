@@ -54,19 +54,33 @@ namespace GreenSoft_Balcao.View
             if(e.KeyCode == Keys.Enter)
             {
                 FindUsuario();
+                dgvUsuarios.Focus();
             }
         }
 
         private void dgvProdutos_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            int idUser = (int)dgvUsuarios.Rows[e.RowIndex].Cells[0].Value;
+            RetornaUsuario(e.RowIndex);
+        }
+        
+        private void RetornaUsuario(int index)
+        {
+            int idUser = (int)dgvUsuarios.Rows[index].Cells[0].Value;
 
-            using(var dx = new dbGreenSoftFinalEntities())
+            using (var dx = new dbGreenSoftFinalEntities())
             {
                 clsStatic.usuario_temp = dx.Usuario.FirstOrDefault(x => x.Usuario_ID == idUser);
             }
 
             this.Close();
+        }
+
+        private void dgvUsuarios_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                RetornaUsuario(dgvUsuarios.SelectedRows[0].Index);
+            }
         }
     }
 }

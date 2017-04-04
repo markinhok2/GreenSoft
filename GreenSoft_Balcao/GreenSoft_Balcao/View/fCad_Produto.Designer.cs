@@ -60,6 +60,7 @@
             // 
             // toolStrip1
             // 
+            this.toolStrip1.BackColor = System.Drawing.Color.PowderBlue;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(22, 22);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnAdd,
@@ -152,6 +153,7 @@
             this.btnAddFoto.BackColor = System.Drawing.Color.Transparent;
             this.btnAddFoto.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAddFoto.BackgroundImage")));
             this.btnAddFoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnAddFoto.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAddFoto.FlatAppearance.BorderSize = 0;
             this.btnAddFoto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddFoto.Location = new System.Drawing.Point(513, 57);
@@ -279,6 +281,7 @@
             // 
             // statusStrip1
             // 
+            this.statusStrip1.BackColor = System.Drawing.Color.PowderBlue;
             this.statusStrip1.Location = new System.Drawing.Point(0, 309);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(784, 22);

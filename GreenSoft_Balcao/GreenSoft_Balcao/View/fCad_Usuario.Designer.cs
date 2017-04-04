@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fCad_Usuario));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnAdd = new System.Windows.Forms.ToolStripButton();
@@ -36,6 +37,13 @@
             this.btnDelete = new System.Windows.Forms.ToolStripButton();
             this.btnBuscar = new System.Windows.Forms.ToolStripButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.btnOk = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.btnAddFoto = new System.Windows.Forms.Button();
+            this.imgUsuario = new System.Windows.Forms.PictureBox();
+            this.btnAddFotoCam = new System.Windows.Forms.Button();
+            this.cboCameras = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -52,22 +60,17 @@
             this.txtSenha = new System.Windows.Forms.TextBox();
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.txtNome = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.btnOk = new System.Windows.Forms.Button();
-            this.label12 = new System.Windows.Forms.Label();
-            this.btnAddFoto = new System.Windows.Forms.Button();
-            this.imgUsuario = new System.Windows.Forms.PictureBox();
-            this.btnAddFotoCam = new System.Windows.Forms.Button();
-            this.cboCameras = new System.Windows.Forms.ComboBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.imgList = new System.Windows.Forms.ImageList(this.components);
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgUsuario)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
             // 
+            this.toolStrip1.BackColor = System.Drawing.Color.PowderBlue;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(22, 22);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnAdd,
@@ -161,6 +164,93 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Usuário";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(627, 20);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(31, 13);
+            this.label13.TabIndex = 29;
+            this.label13.Text = "Foto";
+            // 
+            // btnOk
+            // 
+            this.btnOk.BackColor = System.Drawing.Color.Transparent;
+            this.btnOk.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnOk.BackgroundImage")));
+            this.btnOk.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnOk.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOk.FlatAppearance.BorderSize = 0;
+            this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOk.Location = new System.Drawing.Point(630, 135);
+            this.btnOk.Margin = new System.Windows.Forms.Padding(0);
+            this.btnOk.Name = "btnOk";
+            this.btnOk.Size = new System.Drawing.Size(25, 25);
+            this.btnOk.TabIndex = 35;
+            this.btnOk.UseVisualStyleBackColor = false;
+            this.btnOk.Visible = false;
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(627, 166);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(120, 13);
+            this.label12.TabIndex = 34;
+            this.label12.Text = "Selecione uma camera";
+            // 
+            // btnAddFoto
+            // 
+            this.btnAddFoto.BackColor = System.Drawing.Color.Transparent;
+            this.btnAddFoto.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAddFoto.BackgroundImage")));
+            this.btnAddFoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnAddFoto.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddFoto.FlatAppearance.BorderSize = 0;
+            this.btnAddFoto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddFoto.Location = new System.Drawing.Point(601, 36);
+            this.btnAddFoto.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAddFoto.Name = "btnAddFoto";
+            this.btnAddFoto.Size = new System.Drawing.Size(25, 25);
+            this.btnAddFoto.TabIndex = 33;
+            this.btnAddFoto.UseVisualStyleBackColor = false;
+            this.btnAddFoto.Click += new System.EventHandler(this.btnAddFoto_Click);
+            // 
+            // imgUsuario
+            // 
+            this.imgUsuario.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.imgUsuario.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.imgUsuario.Location = new System.Drawing.Point(629, 36);
+            this.imgUsuario.Name = "imgUsuario";
+            this.imgUsuario.Size = new System.Drawing.Size(125, 125);
+            this.imgUsuario.TabIndex = 32;
+            this.imgUsuario.TabStop = false;
+            // 
+            // btnAddFotoCam
+            // 
+            this.btnAddFotoCam.BackColor = System.Drawing.Color.Transparent;
+            this.btnAddFotoCam.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAddFotoCam.BackgroundImage")));
+            this.btnAddFotoCam.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnAddFotoCam.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddFotoCam.FlatAppearance.BorderSize = 0;
+            this.btnAddFotoCam.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddFotoCam.Location = new System.Drawing.Point(601, 63);
+            this.btnAddFotoCam.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAddFotoCam.Name = "btnAddFotoCam";
+            this.btnAddFotoCam.Size = new System.Drawing.Size(25, 25);
+            this.btnAddFotoCam.TabIndex = 31;
+            this.btnAddFotoCam.UseVisualStyleBackColor = false;
+            this.btnAddFotoCam.Click += new System.EventHandler(this.btnAddFotoCam_Click);
+            // 
+            // cboCameras
+            // 
+            this.cboCameras.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCameras.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboCameras.FormattingEnabled = true;
+            this.cboCameras.Location = new System.Drawing.Point(630, 182);
+            this.cboCameras.Name = "cboCameras";
+            this.cboCameras.Size = new System.Drawing.Size(124, 21);
+            this.cboCameras.TabIndex = 30;
             // 
             // label1
             // 
@@ -306,100 +396,20 @@
             this.txtNome.TabIndex = 0;
             this.txtNome.TextChanged += new System.EventHandler(this.txtDescricao_TextChanged);
             // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(627, 20);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(31, 13);
-            this.label13.TabIndex = 29;
-            this.label13.Text = "Foto";
-            // 
-            // btnOk
-            // 
-            this.btnOk.BackColor = System.Drawing.Color.Transparent;
-            this.btnOk.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnOk.BackgroundImage")));
-            this.btnOk.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnOk.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOk.FlatAppearance.BorderSize = 0;
-            this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOk.Location = new System.Drawing.Point(630, 135);
-            this.btnOk.Margin = new System.Windows.Forms.Padding(0);
-            this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(25, 25);
-            this.btnOk.TabIndex = 35;
-            this.btnOk.UseVisualStyleBackColor = false;
-            this.btnOk.Visible = false;
-            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(627, 166);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(120, 13);
-            this.label12.TabIndex = 34;
-            this.label12.Text = "Selecione uma camera";
-            // 
-            // btnAddFoto
-            // 
-            this.btnAddFoto.BackColor = System.Drawing.Color.Transparent;
-            this.btnAddFoto.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAddFoto.BackgroundImage")));
-            this.btnAddFoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnAddFoto.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAddFoto.FlatAppearance.BorderSize = 0;
-            this.btnAddFoto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddFoto.Location = new System.Drawing.Point(601, 36);
-            this.btnAddFoto.Margin = new System.Windows.Forms.Padding(0);
-            this.btnAddFoto.Name = "btnAddFoto";
-            this.btnAddFoto.Size = new System.Drawing.Size(25, 25);
-            this.btnAddFoto.TabIndex = 33;
-            this.btnAddFoto.UseVisualStyleBackColor = false;
-            this.btnAddFoto.Click += new System.EventHandler(this.btnAddFoto_Click);
-            // 
-            // imgUsuario
-            // 
-            this.imgUsuario.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.imgUsuario.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.imgUsuario.Location = new System.Drawing.Point(629, 36);
-            this.imgUsuario.Name = "imgUsuario";
-            this.imgUsuario.Size = new System.Drawing.Size(125, 125);
-            this.imgUsuario.TabIndex = 32;
-            this.imgUsuario.TabStop = false;
-            // 
-            // btnAddFotoCam
-            // 
-            this.btnAddFotoCam.BackColor = System.Drawing.Color.Transparent;
-            this.btnAddFotoCam.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAddFotoCam.BackgroundImage")));
-            this.btnAddFotoCam.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnAddFotoCam.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAddFotoCam.FlatAppearance.BorderSize = 0;
-            this.btnAddFotoCam.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddFotoCam.Location = new System.Drawing.Point(601, 63);
-            this.btnAddFotoCam.Margin = new System.Windows.Forms.Padding(0);
-            this.btnAddFotoCam.Name = "btnAddFotoCam";
-            this.btnAddFotoCam.Size = new System.Drawing.Size(25, 25);
-            this.btnAddFotoCam.TabIndex = 31;
-            this.btnAddFotoCam.UseVisualStyleBackColor = false;
-            this.btnAddFotoCam.Click += new System.EventHandler(this.btnAddFotoCam_Click);
-            // 
-            // cboCameras
-            // 
-            this.cboCameras.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboCameras.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboCameras.FormattingEnabled = true;
-            this.cboCameras.Location = new System.Drawing.Point(630, 182);
-            this.cboCameras.Name = "cboCameras";
-            this.cboCameras.Size = new System.Drawing.Size(124, 21);
-            this.cboCameras.TabIndex = 30;
-            // 
             // statusStrip1
             // 
+            this.statusStrip1.BackColor = System.Drawing.Color.PowderBlue;
             this.statusStrip1.Location = new System.Drawing.Point(0, 309);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(784, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // imgList
+            // 
+            this.imgList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgList.ImageStream")));
+            this.imgList.TransparentColor = System.Drawing.Color.Transparent;
+            this.imgList.Images.SetKeyName(0, "1491301451_photo.png");
             // 
             // fCad_Usuario
             // 
@@ -422,9 +432,9 @@
             this.toolStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imgUsuario)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imgUsuario)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -463,5 +473,6 @@
         private System.Windows.Forms.Button btnAddFotoCam;
         private System.Windows.Forms.ComboBox cboCameras;
         private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ImageList imgList;
     }
 }

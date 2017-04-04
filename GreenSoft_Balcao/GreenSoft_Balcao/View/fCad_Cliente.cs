@@ -35,6 +35,8 @@ namespace GreenSoft_Balcao.View
                 cboCameras.SelectedIndex = 0; // default
                 FinalFrame = new VideoCaptureDevice();
 
+                imgCliente.BackgroundImage = imgList.Images[0];
+
                 txtDtCadastro.Text = DateTime.Now.ToString("dd/MM/yyyy");
                 cboPais.SelectedIndex = 0;
                 using (var dx = new Data.dbGreenSoftFinalEntities())
@@ -111,7 +113,7 @@ namespace GreenSoft_Balcao.View
                 if (FinalFrame.IsRunning == true)
                     FinalFrame.Stop();
 
-                imgCliente.BackgroundImage = null;
+                imgCliente.BackgroundImage = imgList.Images[0];
                 btnOk.Visible = false;
             }
             catch (Exception ex)
@@ -224,7 +226,7 @@ namespace GreenSoft_Balcao.View
                 if (!String.IsNullOrEmpty(clsStatic.cliente.Imagem))
                     imgCliente.BackgroundImage = clsUtil.Base64ToImage(clsStatic.cliente.Imagem);
                 else
-                    imgCliente.BackgroundImage = null;
+                    imgCliente.BackgroundImage = imgList.Images[0];
             }
             catch (Exception ex)
             {
@@ -328,7 +330,7 @@ namespace GreenSoft_Balcao.View
                             dx.SaveChanges();
                             LimparCampos();
                             clsStatic.cliente = null;
-                            imgCliente.BackgroundImage = null;
+                            imgCliente.BackgroundImage = imgList.Images[0];
                         }
                     }
                 }
@@ -347,11 +349,11 @@ namespace GreenSoft_Balcao.View
                 FinalFrame.Stop();
 
                 if (clsStatic.cliente == null)
-                    imgCliente.BackgroundImage = null;
+                    imgCliente.BackgroundImage = imgList.Images[0];
                 else
                 {
                     if (String.IsNullOrEmpty(clsStatic.cliente.Imagem))
-                        imgCliente.BackgroundImage = null;
+                        imgCliente.BackgroundImage = imgList.Images[0];
                     else
                     {
                         imgCliente.BackgroundImage = clsUtil.Base64ToImage(clsStatic.cliente.Imagem);
@@ -386,11 +388,11 @@ namespace GreenSoft_Balcao.View
                 FinalFrame.Stop();
 
                 if (clsStatic.cliente == null)
-                    imgCliente.BackgroundImage = null;
+                    imgCliente.BackgroundImage = imgList.Images[0];
                 else
                 {
                     if (String.IsNullOrEmpty(clsStatic.cliente.Imagem))
-                        imgCliente.BackgroundImage = null;
+                        imgCliente.BackgroundImage = imgList.Images[0];
                     else
                     {
                         imgCliente.BackgroundImage = clsUtil.Base64ToImage(clsStatic.cliente.Imagem);
