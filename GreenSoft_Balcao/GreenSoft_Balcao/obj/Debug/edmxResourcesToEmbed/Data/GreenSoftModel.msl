@@ -4,64 +4,53 @@
     <EntitySetMapping Name="Cliente">
       <EntityTypeMapping TypeName="dbGreenSoftFinalModel.Cliente">
         <MappingFragment StoreEntitySet="Cliente">
-          <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
-          <ScalarProperty Name="Nome" ColumnName="Nome" />
-          <ScalarProperty Name="Cpf" ColumnName="Cpf" />
-          <ScalarProperty Name="DtNascimento" ColumnName="DtNascimento" />
-          <ScalarProperty Name="Rua" ColumnName="Rua" />
-          <ScalarProperty Name="Numero" ColumnName="Numero" />
-          <ScalarProperty Name="Bairro" ColumnName="Bairro" />
-          <ScalarProperty Name="Cep" ColumnName="Cep" />
-          <ScalarProperty Name="Uf" ColumnName="Uf" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+          <ScalarProperty Name="CEP" ColumnName="CEP" />
+          <ScalarProperty Name="Regiao" ColumnName="Regiao" />
+          <ScalarProperty Name="Cidade" ColumnName="Cidade" />
+          <ScalarProperty Name="Endereco" ColumnName="Endereco" />
+          <ScalarProperty Name="CargoContato" ColumnName="CargoContato" />
+          <ScalarProperty Name="NomeContato" ColumnName="NomeContato" />
+          <ScalarProperty Name="NomeEmpresa" ColumnName="NomeEmpresa" />
+          <ScalarProperty Name="ClienteID" ColumnName="ClienteID" />
           <ScalarProperty Name="Pais" ColumnName="Pais" />
-          <ScalarProperty Name="DtCadastro" ColumnName="DtCadastro" />
-          <ScalarProperty Name="Ativo" ColumnName="Ativo" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Cooperativa">
-      <EntityTypeMapping TypeName="dbGreenSoftFinalModel.Cooperativa">
-        <MappingFragment StoreEntitySet="Cooperativa">
-          <ScalarProperty Name="Cooperativa_ID" ColumnName="Cooperativa_ID" />
-          <ScalarProperty Name="Razao" ColumnName="Razao" />
-          <ScalarProperty Name="Cnpj" ColumnName="Cnpj" />
-          <ScalarProperty Name="Ativo" ColumnName="Ativo" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Pedido">
       <EntityTypeMapping TypeName="dbGreenSoftFinalModel.Pedido">
         <MappingFragment StoreEntitySet="Pedido">
-          <ScalarProperty Name="Pedido_ID" ColumnName="Pedido_ID" />
-          <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
-          <ScalarProperty Name="Cooperativa_ID" ColumnName="Cooperativa_ID" />
-          <ScalarProperty Name="Usuario_ID" ColumnName="Usuario_ID" />
-          <ScalarProperty Name="ValorTotal" ColumnName="ValorTotal" />
-          <ScalarProperty Name="Status" ColumnName="Status" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="PedidoItem">
-      <EntityTypeMapping TypeName="dbGreenSoftFinalModel.PedidoItem">
-        <MappingFragment StoreEntitySet="PedidoItem">
-          <ScalarProperty Name="Seq_ID" ColumnName="Seq_ID" />
-          <ScalarProperty Name="Pedido_ID" ColumnName="Pedido_ID" />
-          <ScalarProperty Name="Produto_ID" ColumnName="Produto_ID" />
-          <ScalarProperty Name="Qtde" ColumnName="Qtde" />
-          <ScalarProperty Name="Valor" ColumnName="Valor" />
-          <ScalarProperty Name="ValorTotal" ColumnName="ValorTotal" />
+          <ScalarProperty Name="PaisEntrega" ColumnName="PaisEntrega" />
+          <ScalarProperty Name="CEPEntrega" ColumnName="CEPEntrega" />
+          <ScalarProperty Name="ShipRegiao" ColumnName="ShipRegiao" />
+          <ScalarProperty Name="CidadeEntrega" ColumnName="CidadeEntrega" />
+          <ScalarProperty Name="EnderecoEntrega" ColumnName="EnderecoEntrega" />
+          <ScalarProperty Name="NomeTransporte" ColumnName="NomeTransporte" />
+          <ScalarProperty Name="Frete" ColumnName="Frete" />
+          <ScalarProperty Name="ViaTransporte" ColumnName="ViaTransporte" />
+          <ScalarProperty Name="DataTransporte" ColumnName="DataTransporte" />
+          <ScalarProperty Name="DataRequisicao" ColumnName="DataRequisicao" />
+          <ScalarProperty Name="DataPedido" ColumnName="DataPedido" />
+          <ScalarProperty Name="FuncionarioID" ColumnName="FuncionarioID" />
+          <ScalarProperty Name="ClienteID" ColumnName="ClienteID" />
+          <ScalarProperty Name="PedidoID" ColumnName="PedidoID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Produto">
       <EntityTypeMapping TypeName="dbGreenSoftFinalModel.Produto">
         <MappingFragment StoreEntitySet="Produto">
-          <ScalarProperty Name="Produto_ID" ColumnName="Produto_ID" />
-          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
-          <ScalarProperty Name="Valor" ColumnName="Valor" />
-          <ScalarProperty Name="Unidade" ColumnName="Unidade" />
-          <ScalarProperty Name="Estoque" ColumnName="Estoque" />
-          <ScalarProperty Name="Ativo" ColumnName="Ativo" />
+          <ScalarProperty Name="Depreciado" ColumnName="Depreciado" />
+          <ScalarProperty Name="NivelReabastecimento" ColumnName="NivelReabastecimento" />
+          <ScalarProperty Name="UnidadesPedido" ColumnName="UnidadesPedido" />
+          <ScalarProperty Name="QuantidadeDisponivel" ColumnName="QuantidadeDisponivel" />
+          <ScalarProperty Name="PrecoUnitario" ColumnName="PrecoUnitario" />
+          <ScalarProperty Name="QuantidadePorUn" ColumnName="QuantidadePorUn" />
+          <ScalarProperty Name="CategoriaID" ColumnName="CategoriaID" />
+          <ScalarProperty Name="FornecedorID" ColumnName="FornecedorID" />
+          <ScalarProperty Name="NomeProduto" ColumnName="NomeProduto" />
+          <ScalarProperty Name="ProdutoID" ColumnName="ProdutoID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -76,27 +65,118 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Usuario">
-      <EntityTypeMapping TypeName="dbGreenSoftFinalModel.Usuario">
-        <MappingFragment StoreEntitySet="Usuario">
-          <ScalarProperty Name="Usuario_ID" ColumnName="Usuario_ID" />
-          <ScalarProperty Name="Username" ColumnName="Username" />
-          <ScalarProperty Name="Senha" ColumnName="Senha" />
-          <ScalarProperty Name="Nome" ColumnName="Nome" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="Ativo" ColumnName="Ativo" />
-          <ScalarProperty Name="Cooperativa_ID" ColumnName="Cooperativa_ID" />
+    <EntitySetMapping Name="Categoria">
+      <EntityTypeMapping TypeName="dbGreenSoftFinalModel.Categoria">
+        <MappingFragment StoreEntitySet="Categoria">
+          <ScalarProperty Name="Imagem" ColumnName="Imagem" />
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="NomeCategoria" ColumnName="NomeCategoria" />
+          <ScalarProperty Name="CategoriaID" ColumnName="CategoriaID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ProdutoCoperativa">
-      <EntityTypeMapping TypeName="dbGreenSoftFinalModel.ProdutoCoperativa">
-        <MappingFragment StoreEntitySet="ProdutoCoperativa">
-          <ScalarProperty Name="Cooperativa_ID" ColumnName="Cooperativa_ID" />
-          <ScalarProperty Name="Produto_ID" ColumnName="Produto_ID" />
-          <ScalarProperty Name="Ativo" ColumnName="Ativo" />
+    <EntitySetMapping Name="ClienteDemographics">
+      <EntityTypeMapping TypeName="dbGreenSoftFinalModel.ClienteDemographics">
+        <MappingFragment StoreEntitySet="ClienteDemographics">
+          <ScalarProperty Name="ClienteDesc" ColumnName="ClienteDesc" />
+          <ScalarProperty Name="ClienteTypeID" ColumnName="ClienteTypeID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="DetalhesPedido">
+      <EntityTypeMapping TypeName="dbGreenSoftFinalModel.DetalhesPedido">
+        <MappingFragment StoreEntitySet="DetalhesPedido">
+          <ScalarProperty Name="Desconto" ColumnName="Desconto" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="PrecoUnitario" ColumnName="PrecoUnitario" />
+          <ScalarProperty Name="ProdutoID" ColumnName="ProdutoID" />
+          <ScalarProperty Name="PedidoID" ColumnName="PedidoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Fornecedor">
+      <EntityTypeMapping TypeName="dbGreenSoftFinalModel.Fornecedor">
+        <MappingFragment StoreEntitySet="Fornecedor">
+          <ScalarProperty Name="HomePage" ColumnName="HomePage" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+          <ScalarProperty Name="Pais" ColumnName="Pais" />
+          <ScalarProperty Name="CEP" ColumnName="CEP" />
+          <ScalarProperty Name="Regiao" ColumnName="Regiao" />
+          <ScalarProperty Name="Cidade" ColumnName="Cidade" />
+          <ScalarProperty Name="Endereco" ColumnName="Endereco" />
+          <ScalarProperty Name="CargoContato" ColumnName="CargoContato" />
+          <ScalarProperty Name="NomeContato" ColumnName="NomeContato" />
+          <ScalarProperty Name="NomeEmpresa" ColumnName="NomeEmpresa" />
+          <ScalarProperty Name="FornecedorID" ColumnName="FornecedorID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Funcionario">
+      <EntityTypeMapping TypeName="dbGreenSoftFinalModel.Funcionario">
+        <MappingFragment StoreEntitySet="Funcionario">
+          <ScalarProperty Name="CaminhoFoto" ColumnName="CaminhoFoto" />
+          <ScalarProperty Name="Superior" ColumnName="Superior" />
+          <ScalarProperty Name="Notas" ColumnName="Notas" />
+          <ScalarProperty Name="Foto" ColumnName="Foto" />
+          <ScalarProperty Name="Extensao" ColumnName="Extensao" />
+          <ScalarProperty Name="TelResidencial" ColumnName="TelResidencial" />
+          <ScalarProperty Name="Pais" ColumnName="Pais" />
+          <ScalarProperty Name="CEP" ColumnName="CEP" />
+          <ScalarProperty Name="Regiao" ColumnName="Regiao" />
+          <ScalarProperty Name="Cidade" ColumnName="Cidade" />
+          <ScalarProperty Name="Endereco" ColumnName="Endereco" />
+          <ScalarProperty Name="DataContratacao" ColumnName="DataContratacao" />
+          <ScalarProperty Name="DataNascimento" ColumnName="DataNascimento" />
+          <ScalarProperty Name="Funcao" ColumnName="Funcao" />
+          <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+          <ScalarProperty Name="PrimeiroNome" ColumnName="PrimeiroNome" />
+          <ScalarProperty Name="UltimoNome" ColumnName="UltimoNome" />
+          <ScalarProperty Name="FuncionarioID" ColumnName="FuncionarioID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Regiao">
+      <EntityTypeMapping TypeName="dbGreenSoftFinalModel.Regiao">
+        <MappingFragment StoreEntitySet="Regiao">
+          <ScalarProperty Name="RegiaoDescricao" ColumnName="RegiaoDescricao" />
+          <ScalarProperty Name="RegiaoID" ColumnName="RegiaoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Territorio">
+      <EntityTypeMapping TypeName="dbGreenSoftFinalModel.Territorio">
+        <MappingFragment StoreEntitySet="Territorio">
+          <ScalarProperty Name="RegiaoID" ColumnName="RegiaoID" />
+          <ScalarProperty Name="TerritorioDescricao" ColumnName="TerritorioDescricao" />
+          <ScalarProperty Name="TerritorioID" ColumnName="TerritorioID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Transportadora">
+      <EntityTypeMapping TypeName="dbGreenSoftFinalModel.Transportadora">
+        <MappingFragment StoreEntitySet="Transportadora">
+          <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+          <ScalarProperty Name="NomeEmpresa" ColumnName="NomeEmpresa" />
+          <ScalarProperty Name="TransportadoraID" ColumnName="TransportadoraID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="ClienteClienteDemo" TypeName="dbGreenSoftFinalModel.ClienteClienteDemo" StoreEntitySet="ClienteClienteDemo">
+      <EndProperty Name="Cliente">
+        <ScalarProperty Name="ClienteID" ColumnName="ClienteID" />
+      </EndProperty>
+      <EndProperty Name="ClienteDemographics">
+        <ScalarProperty Name="ClienteTypeID" ColumnName="ClienteTypeID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FuncionarioTerritorio" TypeName="dbGreenSoftFinalModel.FuncionarioTerritorio" StoreEntitySet="FuncionarioTerritorio">
+      <EndProperty Name="Territorio">
+        <ScalarProperty Name="TerritorioID" ColumnName="TerritorioID" />
+      </EndProperty>
+      <EndProperty Name="Funcionario">
+        <ScalarProperty Name="FuncionarioID" ColumnName="FuncionarioID" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

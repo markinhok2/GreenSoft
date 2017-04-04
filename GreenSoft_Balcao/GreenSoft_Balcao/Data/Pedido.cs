@@ -26,6 +26,7 @@ namespace GreenSoft_Balcao.Data
         public int Usuario_ID { get; set; }
         public decimal ValorTotal { get; set; }
         public int Status { get; set; }
+        public Nullable<System.DateTime> DtPedido { get; set; }
     
         public virtual Cliente Cliente { get; set; }
         public virtual Cooperativa Cooperativa { get; set; }

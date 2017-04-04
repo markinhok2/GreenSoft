@@ -1,75 +1,144 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="dbGreenSoftFinalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Categoria">
+    <Key>
+      <PropertyRef Name="CategoriaID" />
+    </Key>
+    <Property Name="CategoriaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NomeCategoria" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="Descricao" Type="ntext" />
+    <Property Name="Imagem" Type="image" />
+  </EntityType>
   <EntityType Name="Cliente">
     <Key>
-      <PropertyRef Name="Cliente_ID" />
+      <PropertyRef Name="ClienteID" />
     </Key>
-    <Property Name="Cliente_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Nome" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="Cpf" Type="varchar" MaxLength="15" Nullable="false" />
-    <Property Name="DtNascimento" Type="date" Nullable="false" />
-    <Property Name="Rua" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="Numero" Type="varchar" MaxLength="30" Nullable="false" />
-    <Property Name="Bairro" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Cep" Type="varchar" MaxLength="10" Nullable="false" />
-    <Property Name="Uf" Type="nchar" MaxLength="2" Nullable="false" />
-    <Property Name="Pais" Type="nchar" MaxLength="2" Nullable="false" />
-    <Property Name="DtCadastro" Type="datetime" Nullable="false" />
-    <Property Name="Ativo" Type="bit" Nullable="false" />
+    <Property Name="ClienteID" Type="nchar" MaxLength="5" Nullable="false" />
+    <Property Name="NomeEmpresa" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="NomeContato" Type="nvarchar" MaxLength="30" />
+    <Property Name="CargoContato" Type="nvarchar" MaxLength="30" />
+    <Property Name="Endereco" Type="nvarchar" MaxLength="60" />
+    <Property Name="Cidade" Type="nvarchar" MaxLength="15" />
+    <Property Name="Regiao" Type="nvarchar" MaxLength="15" />
+    <Property Name="CEP" Type="nvarchar" MaxLength="10" />
+    <Property Name="Pais" Type="nvarchar" MaxLength="15" />
+    <Property Name="Telefone" Type="nvarchar" MaxLength="24" />
+    <Property Name="Fax" Type="nvarchar" MaxLength="24" />
   </EntityType>
-  <EntityType Name="Cooperativa">
+  <EntityType Name="ClienteClienteDemo">
     <Key>
-      <PropertyRef Name="Cooperativa_ID" />
+      <PropertyRef Name="ClienteID" />
+      <PropertyRef Name="ClienteTypeID" />
     </Key>
-    <Property Name="Cooperativa_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Razao" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="Cnpj" Type="varchar" MaxLength="30" Nullable="false" />
-    <Property Name="Ativo" Type="bit" Nullable="false" />
+    <Property Name="ClienteID" Type="nchar" MaxLength="5" Nullable="false" />
+    <Property Name="ClienteTypeID" Type="nchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ClienteDemographics">
+    <Key>
+      <PropertyRef Name="ClienteTypeID" />
+    </Key>
+    <Property Name="ClienteTypeID" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="ClienteDesc" Type="ntext" />
+  </EntityType>
+  <EntityType Name="DetalhesPedido">
+    <Key>
+      <PropertyRef Name="PedidoID" />
+      <PropertyRef Name="ProdutoID" />
+    </Key>
+    <Property Name="PedidoID" Type="int" Nullable="false" />
+    <Property Name="ProdutoID" Type="int" Nullable="false" />
+    <Property Name="PrecoUnitario" Type="money" Nullable="false" />
+    <Property Name="Quantity" Type="smallint" Nullable="false" />
+    <Property Name="Desconto" Type="real" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Fornecedor">
+    <Key>
+      <PropertyRef Name="FornecedorID" />
+    </Key>
+    <Property Name="FornecedorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NomeEmpresa" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="NomeContato" Type="nvarchar" MaxLength="30" />
+    <Property Name="CargoContato" Type="nvarchar" MaxLength="30" />
+    <Property Name="Endereco" Type="nvarchar" MaxLength="60" />
+    <Property Name="Cidade" Type="nvarchar" MaxLength="15" />
+    <Property Name="Regiao" Type="nvarchar" MaxLength="15" />
+    <Property Name="CEP" Type="nvarchar" MaxLength="10" />
+    <Property Name="Pais" Type="nvarchar" MaxLength="15" />
+    <Property Name="Telefone" Type="nvarchar" MaxLength="24" />
+    <Property Name="Fax" Type="nvarchar" MaxLength="24" />
+    <Property Name="HomePage" Type="ntext" />
+  </EntityType>
+  <EntityType Name="Funcionario">
+    <Key>
+      <PropertyRef Name="FuncionarioID" />
+    </Key>
+    <Property Name="FuncionarioID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UltimoNome" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="PrimeiroNome" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Cargo" Type="nvarchar" MaxLength="30" />
+    <Property Name="Funcao" Type="nvarchar" MaxLength="25" />
+    <Property Name="DataNascimento" Type="datetime" />
+    <Property Name="DataContratacao" Type="datetime" />
+    <Property Name="Endereco" Type="nvarchar" MaxLength="60" />
+    <Property Name="Cidade" Type="nvarchar" MaxLength="15" />
+    <Property Name="Regiao" Type="nvarchar" MaxLength="15" />
+    <Property Name="CEP" Type="nvarchar" MaxLength="10" />
+    <Property Name="Pais" Type="nvarchar" MaxLength="15" />
+    <Property Name="TelResidencial" Type="nvarchar" MaxLength="24" />
+    <Property Name="Extensao" Type="nvarchar" MaxLength="4" />
+    <Property Name="Foto" Type="image" />
+    <Property Name="Notas" Type="ntext" />
+    <Property Name="Superior" Type="int" />
+    <Property Name="CaminhoFoto" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="FuncionarioTerritorio">
+    <Key>
+      <PropertyRef Name="FuncionarioID" />
+      <PropertyRef Name="TerritorioID" />
+    </Key>
+    <Property Name="FuncionarioID" Type="int" Nullable="false" />
+    <Property Name="TerritorioID" Type="nvarchar" MaxLength="20" Nullable="false" />
   </EntityType>
   <EntityType Name="Pedido">
     <Key>
-      <PropertyRef Name="Pedido_ID" />
+      <PropertyRef Name="PedidoID" />
     </Key>
-    <Property Name="Pedido_ID" Type="int" Nullable="false" />
-    <Property Name="Cliente_ID" Type="int" Nullable="false" />
-    <Property Name="Cooperativa_ID" Type="int" Nullable="false" />
-    <Property Name="Usuario_ID" Type="int" Nullable="false" />
-    <Property Name="ValorTotal" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-    <Property Name="Status" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="PedidoItem">
-    <Key>
-      <PropertyRef Name="Seq_ID" />
-    </Key>
-    <Property Name="Seq_ID" Type="int" Nullable="false" />
-    <Property Name="Pedido_ID" Type="int" Nullable="false" />
-    <Property Name="Produto_ID" Type="int" />
-    <Property Name="Qtde" Type="int" Nullable="false" />
-    <Property Name="Valor" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-    <Property Name="ValorTotal" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="PedidoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClienteID" Type="nchar" MaxLength="5" />
+    <Property Name="FuncionarioID" Type="int" />
+    <Property Name="DataPedido" Type="datetime" />
+    <Property Name="DataRequisicao" Type="datetime" />
+    <Property Name="DataTransporte" Type="datetime" />
+    <Property Name="ViaTransporte" Type="int" />
+    <Property Name="Frete" Type="money" />
+    <Property Name="NomeTransporte" Type="nvarchar" MaxLength="40" />
+    <Property Name="EnderecoEntrega" Type="nvarchar" MaxLength="60" />
+    <Property Name="CidadeEntrega" Type="nvarchar" MaxLength="15" />
+    <Property Name="ShipRegiao" Type="nvarchar" MaxLength="15" />
+    <Property Name="CEPEntrega" Type="nvarchar" MaxLength="10" />
+    <Property Name="PaisEntrega" Type="nvarchar" MaxLength="15" />
   </EntityType>
   <EntityType Name="Produto">
     <Key>
-      <PropertyRef Name="Produto_ID" />
+      <PropertyRef Name="ProdutoID" />
     </Key>
-    <Property Name="Produto_ID" Type="int" Nullable="false" />
-    <Property Name="Descricao" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="Valor" Type="decimal" Precision="18" Scale="2" Nullable="false" />
-    <Property Name="Unidade" Type="varchar" MaxLength="4" Nullable="false" />
-    <Property Name="Estoque" Type="int" Nullable="false" />
-    <Property Name="Ativo" Type="bit" Nullable="false" />
+    <Property Name="ProdutoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NomeProduto" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="FornecedorID" Type="int" />
+    <Property Name="CategoriaID" Type="int" />
+    <Property Name="QuantidadePorUn" Type="nvarchar" MaxLength="20" />
+    <Property Name="PrecoUnitario" Type="money" />
+    <Property Name="QuantidadeDisponivel" Type="smallint" />
+    <Property Name="UnidadesPedido" Type="smallint" />
+    <Property Name="NivelReabastecimento" Type="smallint" />
+    <Property Name="Depreciado" Type="bit" Nullable="false" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'dbGreenSoftFinal.dbo.ProdutoCoperativa' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="ProdutoCoperativa">
+  <EntityType Name="Regiao">
     <Key>
-      <PropertyRef Name="Cooperativa_ID" />
-      <PropertyRef Name="Produto_ID" />
-      <PropertyRef Name="Ativo" />
+      <PropertyRef Name="RegiaoID" />
     </Key>
-    <Property Name="Cooperativa_ID" Type="int" Nullable="false" />
-    <Property Name="Produto_ID" Type="int" Nullable="false" />
-    <Property Name="Ativo" Type="bit" Nullable="false" />
+    <Property Name="RegiaoID" Type="int" Nullable="false" />
+    <Property Name="RegiaoDescricao" Type="nchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -81,160 +150,244 @@ warning 6002: The table/view 'dbGreenSoftFinal.dbo.ProdutoCoperativa' does not h
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
-  <EntityType Name="Usuario">
+  <EntityType Name="Territorio">
     <Key>
-      <PropertyRef Name="Usuario_ID" />
+      <PropertyRef Name="TerritorioID" />
     </Key>
-    <Property Name="Usuario_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Senha" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Nome" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="Ativo" Type="bit" Nullable="false" />
-    <Property Name="Cooperativa_ID" Type="int" Nullable="false" />
+    <Property Name="TerritorioID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="TerritorioDescricao" Type="nchar" MaxLength="50" Nullable="false" />
+    <Property Name="RegiaoID" Type="int" Nullable="false" />
   </EntityType>
-  <Association Name="FK_Pedido_Cliente">
+  <EntityType Name="Transportadora">
+    <Key>
+      <PropertyRef Name="TransportadoraID" />
+    </Key>
+    <Property Name="TransportadoraID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NomeEmpresa" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="Telefone" Type="nvarchar" MaxLength="24" />
+  </EntityType>
+  <Association Name="FK_ClienteClienteDemo">
+    <End Role="ClienteDemographics" Type="Self.ClienteDemographics" Multiplicity="1" />
+    <End Role="ClienteClienteDemo" Type="Self.ClienteClienteDemo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ClienteDemographics">
+        <PropertyRef Name="ClienteTypeID" />
+      </Principal>
+      <Dependent Role="ClienteClienteDemo">
+        <PropertyRef Name="ClienteTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClienteClienteDemo_Cliente">
     <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+    <End Role="ClienteClienteDemo" Type="Self.ClienteClienteDemo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="ClienteID" />
+      </Principal>
+      <Dependent Role="ClienteClienteDemo">
+        <PropertyRef Name="ClienteID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Funcionario_Funcionario">
+    <End Role="Funcionario" Type="Self.Funcionario" Multiplicity="0..1" />
+    <End Role="Funcionario1" Type="Self.Funcionario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Funcionario">
+        <PropertyRef Name="FuncionarioID" />
+      </Principal>
+      <Dependent Role="Funcionario1">
+        <PropertyRef Name="Superior" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FuncionarioTerritorio_Funcionario">
+    <End Role="Funcionario" Type="Self.Funcionario" Multiplicity="1" />
+    <End Role="FuncionarioTerritorio" Type="Self.FuncionarioTerritorio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Funcionario">
+        <PropertyRef Name="FuncionarioID" />
+      </Principal>
+      <Dependent Role="FuncionarioTerritorio">
+        <PropertyRef Name="FuncionarioID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FuncionarioTerritorio_Territorio">
+    <End Role="Territorio" Type="Self.Territorio" Multiplicity="1" />
+    <End Role="FuncionarioTerritorio" Type="Self.FuncionarioTerritorio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Territorio">
+        <PropertyRef Name="TerritorioID" />
+      </Principal>
+      <Dependent Role="FuncionarioTerritorio">
+        <PropertyRef Name="TerritorioID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Details_Pedido">
+    <End Role="Pedido" Type="Self.Pedido" Multiplicity="1" />
+    <End Role="DetalhesPedido" Type="Self.DetalhesPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pedido">
+        <PropertyRef Name="PedidoID" />
+      </Principal>
+      <Dependent Role="DetalhesPedido">
+        <PropertyRef Name="PedidoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Details_Produto">
+    <End Role="Produto" Type="Self.Produto" Multiplicity="1" />
+    <End Role="DetalhesPedido" Type="Self.DetalhesPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Produto">
+        <PropertyRef Name="ProdutoID" />
+      </Principal>
+      <Dependent Role="DetalhesPedido">
+        <PropertyRef Name="ProdutoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pedido_Cliente">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
     <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Cliente">
-        <PropertyRef Name="Cliente_ID" />
+        <PropertyRef Name="ClienteID" />
       </Principal>
       <Dependent Role="Pedido">
-        <PropertyRef Name="Cliente_ID" />
+        <PropertyRef Name="ClienteID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Pedido_Cooperativa">
-    <End Role="Cooperativa" Type="Self.Cooperativa" Multiplicity="1" />
+  <Association Name="FK_Pedido_Funcionario">
+    <End Role="Funcionario" Type="Self.Funcionario" Multiplicity="0..1" />
     <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Cooperativa">
-        <PropertyRef Name="Cooperativa_ID" />
+      <Principal Role="Funcionario">
+        <PropertyRef Name="FuncionarioID" />
       </Principal>
       <Dependent Role="Pedido">
-        <PropertyRef Name="Cooperativa_ID" />
+        <PropertyRef Name="FuncionarioID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Pedido_Usuario">
-    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+  <Association Name="FK_Pedido_Transportadora">
+    <End Role="Transportadora" Type="Self.Transportadora" Multiplicity="0..1" />
     <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Usuario">
-        <PropertyRef Name="Usuario_ID" />
+      <Principal Role="Transportadora">
+        <PropertyRef Name="TransportadoraID" />
       </Principal>
       <Dependent Role="Pedido">
-        <PropertyRef Name="Usuario_ID" />
+        <PropertyRef Name="ViaTransporte" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_PedidoItem_Pedido">
-    <End Role="Pedido" Type="Self.Pedido" Multiplicity="1" />
-    <End Role="PedidoItem" Type="Self.PedidoItem" Multiplicity="*" />
+  <Association Name="FK_Produto_Categoria">
+    <End Role="Categoria" Type="Self.Categoria" Multiplicity="0..1" />
+    <End Role="Produto" Type="Self.Produto" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Pedido">
-        <PropertyRef Name="Pedido_ID" />
+      <Principal Role="Categoria">
+        <PropertyRef Name="CategoriaID" />
       </Principal>
-      <Dependent Role="PedidoItem">
-        <PropertyRef Name="Pedido_ID" />
+      <Dependent Role="Produto">
+        <PropertyRef Name="CategoriaID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_PedidoItem_Produto">
-    <End Role="Produto" Type="Self.Produto" Multiplicity="0..1" />
-    <End Role="PedidoItem" Type="Self.PedidoItem" Multiplicity="*" />
+  <Association Name="FK_Produto_Fornecedor">
+    <End Role="Fornecedor" Type="Self.Fornecedor" Multiplicity="0..1" />
+    <End Role="Produto" Type="Self.Produto" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Produto">
-        <PropertyRef Name="Produto_ID" />
+      <Principal Role="Fornecedor">
+        <PropertyRef Name="FornecedorID" />
       </Principal>
-      <Dependent Role="PedidoItem">
-        <PropertyRef Name="Produto_ID" />
+      <Dependent Role="Produto">
+        <PropertyRef Name="FornecedorID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ProdutoCoperativa_Cooperativa">
-    <End Role="Cooperativa" Type="Self.Cooperativa" Multiplicity="1" />
-    <End Role="ProdutoCoperativa" Type="Self.ProdutoCoperativa" Multiplicity="*" />
+  <Association Name="FK_Territorio_Regiao">
+    <End Role="Regiao" Type="Self.Regiao" Multiplicity="1" />
+    <End Role="Territorio" Type="Self.Territorio" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Cooperativa">
-        <PropertyRef Name="Cooperativa_ID" />
+      <Principal Role="Regiao">
+        <PropertyRef Name="RegiaoID" />
       </Principal>
-      <Dependent Role="ProdutoCoperativa">
-        <PropertyRef Name="Cooperativa_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ProdutoCoperativa_Produto">
-    <End Role="Produto" Type="Self.Produto" Multiplicity="1" />
-    <End Role="ProdutoCoperativa" Type="Self.ProdutoCoperativa" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Produto">
-        <PropertyRef Name="Produto_ID" />
-      </Principal>
-      <Dependent Role="ProdutoCoperativa">
-        <PropertyRef Name="Produto_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Usuario_Cooperativa">
-    <End Role="Cooperativa" Type="Self.Cooperativa" Multiplicity="1" />
-    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Cooperativa">
-        <PropertyRef Name="Cooperativa_ID" />
-      </Principal>
-      <Dependent Role="Usuario">
-        <PropertyRef Name="Cooperativa_ID" />
+      <Dependent Role="Territorio">
+        <PropertyRef Name="RegiaoID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="dbGreenSoftFinalModelStoreContainer">
+    <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Cooperativa" EntityType="Self.Cooperativa" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ClienteClienteDemo" EntityType="Self.ClienteClienteDemo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ClienteDemographics" EntityType="Self.ClienteDemographics" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DetalhesPedido" EntityType="Self.DetalhesPedido" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Fornecedor" EntityType="Self.Fornecedor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Funcionario" EntityType="Self.Funcionario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FuncionarioTerritorio" EntityType="Self.FuncionarioTerritorio" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Pedido" EntityType="Self.Pedido" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="PedidoItem" EntityType="Self.PedidoItem" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Produto" EntityType="Self.Produto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Regiao" EntityType="Self.Regiao" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="ProdutoCoperativa" EntityType="Self.ProdutoCoperativa" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [ProdutoCoperativa].[Cooperativa_ID] AS [Cooperativa_ID], 
-    [ProdutoCoperativa].[Produto_ID] AS [Produto_ID], 
-    [ProdutoCoperativa].[Ativo] AS [Ativo]
-    FROM [dbo].[ProdutoCoperativa] AS [ProdutoCoperativa]</DefiningQuery>
-    </EntitySet>
+    <EntitySet Name="Territorio" EntityType="Self.Territorio" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Transportadora" EntityType="Self.Transportadora" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ClienteClienteDemo" Association="Self.FK_ClienteClienteDemo">
+      <End Role="ClienteDemographics" EntitySet="ClienteDemographics" />
+      <End Role="ClienteClienteDemo" EntitySet="ClienteClienteDemo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClienteClienteDemo_Cliente" Association="Self.FK_ClienteClienteDemo_Cliente">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="ClienteClienteDemo" EntitySet="ClienteClienteDemo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Funcionario_Funcionario" Association="Self.FK_Funcionario_Funcionario">
+      <End Role="Funcionario" EntitySet="Funcionario" />
+      <End Role="Funcionario1" EntitySet="Funcionario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FuncionarioTerritorio_Funcionario" Association="Self.FK_FuncionarioTerritorio_Funcionario">
+      <End Role="Funcionario" EntitySet="Funcionario" />
+      <End Role="FuncionarioTerritorio" EntitySet="FuncionarioTerritorio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FuncionarioTerritorio_Territorio" Association="Self.FK_FuncionarioTerritorio_Territorio">
+      <End Role="Territorio" EntitySet="Territorio" />
+      <End Role="FuncionarioTerritorio" EntitySet="FuncionarioTerritorio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Details_Pedido" Association="Self.FK_Order_Details_Pedido">
+      <End Role="Pedido" EntitySet="Pedido" />
+      <End Role="DetalhesPedido" EntitySet="DetalhesPedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Details_Produto" Association="Self.FK_Order_Details_Produto">
+      <End Role="Produto" EntitySet="Produto" />
+      <End Role="DetalhesPedido" EntitySet="DetalhesPedido" />
+    </AssociationSet>
     <AssociationSet Name="FK_Pedido_Cliente" Association="Self.FK_Pedido_Cliente">
       <End Role="Cliente" EntitySet="Cliente" />
       <End Role="Pedido" EntitySet="Pedido" />
     </AssociationSet>
-    <AssociationSet Name="FK_Pedido_Cooperativa" Association="Self.FK_Pedido_Cooperativa">
-      <End Role="Cooperativa" EntitySet="Cooperativa" />
+    <AssociationSet Name="FK_Pedido_Funcionario" Association="Self.FK_Pedido_Funcionario">
+      <End Role="Funcionario" EntitySet="Funcionario" />
       <End Role="Pedido" EntitySet="Pedido" />
     </AssociationSet>
-    <AssociationSet Name="FK_Pedido_Usuario" Association="Self.FK_Pedido_Usuario">
-      <End Role="Usuario" EntitySet="Usuario" />
+    <AssociationSet Name="FK_Pedido_Transportadora" Association="Self.FK_Pedido_Transportadora">
+      <End Role="Transportadora" EntitySet="Transportadora" />
       <End Role="Pedido" EntitySet="Pedido" />
     </AssociationSet>
-    <AssociationSet Name="FK_PedidoItem_Pedido" Association="Self.FK_PedidoItem_Pedido">
-      <End Role="Pedido" EntitySet="Pedido" />
-      <End Role="PedidoItem" EntitySet="PedidoItem" />
-    </AssociationSet>
-    <AssociationSet Name="FK_PedidoItem_Produto" Association="Self.FK_PedidoItem_Produto">
+    <AssociationSet Name="FK_Produto_Categoria" Association="Self.FK_Produto_Categoria">
+      <End Role="Categoria" EntitySet="Categoria" />
       <End Role="Produto" EntitySet="Produto" />
-      <End Role="PedidoItem" EntitySet="PedidoItem" />
     </AssociationSet>
-    <AssociationSet Name="FK_ProdutoCoperativa_Cooperativa" Association="Self.FK_ProdutoCoperativa_Cooperativa">
-      <End Role="Cooperativa" EntitySet="Cooperativa" />
-      <End Role="ProdutoCoperativa" EntitySet="ProdutoCoperativa" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ProdutoCoperativa_Produto" Association="Self.FK_ProdutoCoperativa_Produto">
+    <AssociationSet Name="FK_Produto_Fornecedor" Association="Self.FK_Produto_Fornecedor">
+      <End Role="Fornecedor" EntitySet="Fornecedor" />
       <End Role="Produto" EntitySet="Produto" />
-      <End Role="ProdutoCoperativa" EntitySet="ProdutoCoperativa" />
     </AssociationSet>
-    <AssociationSet Name="FK_Usuario_Cooperativa" Association="Self.FK_Usuario_Cooperativa">
-      <End Role="Cooperativa" EntitySet="Cooperativa" />
-      <End Role="Usuario" EntitySet="Usuario" />
+    <AssociationSet Name="FK_Territorio_Regiao" Association="Self.FK_Territorio_Regiao">
+      <End Role="Regiao" EntitySet="Regiao" />
+      <End Role="Territorio" EntitySet="Territorio" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

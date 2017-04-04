@@ -27,12 +27,15 @@ namespace GreenSoft_Balcao.Data
         public string Rua { get; set; }
         public string Numero { get; set; }
         public string Bairro { get; set; }
+        public string Cidade { get; set; }
         public string Cep { get; set; }
-        public string Uf { get; set; }
+        public int UF_ID { get; set; }
         public string Pais { get; set; }
         public System.DateTime DtCadastro { get; set; }
         public bool Ativo { get; set; }
+        public string Imagem { get; set; }
     
+        public virtual UnidadeFederativa UnidadeFederativa { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pedido> Pedido { get; set; }
     }

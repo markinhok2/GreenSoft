@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="dbGreenSoftFinalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="dbGreenSoftFinalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cliente">
           <Key>
             <PropertyRef Name="Cliente_ID" />
@@ -16,10 +16,12 @@
           <Property Name="Rua" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Numero" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="Bairro" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cidade" Type="varchar" MaxLength="50" />
           <Property Name="Cep" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="Uf" Type="nchar" MaxLength="2" Nullable="false" />
+          <Property Name="UF_ID" Type="int" Nullable="false" />
           <Property Name="Pais" Type="nchar" MaxLength="2" Nullable="false" />
           <Property Name="DtCadastro" Type="datetime" Nullable="false" />
+          <Property Name="Imagem" Type="varchar(max)" />
           <Property Name="Ativo" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Cooperativa">
@@ -35,20 +37,23 @@
           <Key>
             <PropertyRef Name="Pedido_ID" />
           </Key>
-          <Property Name="Pedido_ID" Type="int" Nullable="false" />
+          <Property Name="Pedido_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Cliente_ID" Type="int" Nullable="false" />
           <Property Name="Cooperativa_ID" Type="int" Nullable="false" />
           <Property Name="Usuario_ID" Type="int" Nullable="false" />
           <Property Name="ValorTotal" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="DtPedido" Type="datetime" />
           <Property Name="Status" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PedidoItem">
           <Key>
             <PropertyRef Name="Seq_ID" />
           </Key>
-          <Property Name="Seq_ID" Type="int" Nullable="false" />
+          <Property Name="Seq_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Pedido_ID" Type="int" Nullable="false" />
-          <Property Name="Produto_ID" Type="int" />
+          <Property Name="Produto_ID" Type="int" Nullable="false" />
+          <Property Name="DsProduto" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Unidade" Type="varchar" MaxLength="2" Nullable="false" />
           <Property Name="Qtde" Type="int" Nullable="false" />
           <Property Name="Valor" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="ValorTotal" Type="decimal" Precision="18" Scale="2" Nullable="false" />
@@ -57,24 +62,13 @@
           <Key>
             <PropertyRef Name="Produto_ID" />
           </Key>
-          <Property Name="Produto_ID" Type="int" Nullable="false" />
+          <Property Name="Produto_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descricao" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Valor" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Unidade" Type="varchar" MaxLength="4" Nullable="false" />
           <Property Name="Estoque" Type="int" Nullable="false" />
           <Property Name="Ativo" Type="bit" Nullable="false" />
-        </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'dbGreenSoftFinal.dbo.ProdutoCoperativa' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="ProdutoCoperativa">
-          <Key>
-            <PropertyRef Name="Cooperativa_ID" />
-            <PropertyRef Name="Produto_ID" />
-            <PropertyRef Name="Ativo" />
-          </Key>
-          <Property Name="Cooperativa_ID" Type="int" Nullable="false" />
-          <Property Name="Produto_ID" Type="int" Nullable="false" />
-          <Property Name="Ativo" Type="bit" Nullable="false" />
+          <Property Name="Image" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -85,6 +79,14 @@ warning 6002: The table/view 'dbGreenSoftFinal.dbo.ProdutoCoperativa' does not h
           <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="UnidadeFederativa">
+          <Key>
+            <PropertyRef Name="UF_ID" />
+          </Key>
+          <Property Name="UF_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descricao" Type="varchar" MaxLength="100" />
+          <Property Name="Sigla" Type="varchar" MaxLength="2" Nullable="false" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -97,7 +99,21 @@ warning 6002: The table/view 'dbGreenSoftFinal.dbo.ProdutoCoperativa' does not h
           <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Ativo" Type="bit" Nullable="false" />
           <Property Name="Cooperativa_ID" Type="int" Nullable="false" />
+          <Property Name="Imagem" Type="varchar(max)" />
+          <Property Name="StBalcao" Type="bit" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Cliente_UnidadeFederativa">
+          <End Role="UnidadeFederativa" Type="Self.UnidadeFederativa" Multiplicity="1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnidadeFederativa">
+              <PropertyRef Name="UF_ID" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="UF_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Pedido_Cliente">
           <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
           <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
@@ -147,37 +163,13 @@ warning 6002: The table/view 'dbGreenSoftFinal.dbo.ProdutoCoperativa' does not h
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PedidoItem_Produto">
-          <End Role="Produto" Type="Self.Produto" Multiplicity="0..1" />
+          <End Role="Produto" Type="Self.Produto" Multiplicity="1" />
           <End Role="PedidoItem" Type="Self.PedidoItem" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Produto">
               <PropertyRef Name="Produto_ID" />
             </Principal>
             <Dependent Role="PedidoItem">
-              <PropertyRef Name="Produto_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProdutoCoperativa_Cooperativa">
-          <End Role="Cooperativa" Type="Self.Cooperativa" Multiplicity="1" />
-          <End Role="ProdutoCoperativa" Type="Self.ProdutoCoperativa" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cooperativa">
-              <PropertyRef Name="Cooperativa_ID" />
-            </Principal>
-            <Dependent Role="ProdutoCoperativa">
-              <PropertyRef Name="Cooperativa_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProdutoCoperativa_Produto">
-          <End Role="Produto" Type="Self.Produto" Multiplicity="1" />
-          <End Role="ProdutoCoperativa" Type="Self.ProdutoCoperativa" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Produto">
-              <PropertyRef Name="Produto_ID" />
-            </Principal>
-            <Dependent Role="ProdutoCoperativa">
               <PropertyRef Name="Produto_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -201,14 +193,12 @@ warning 6002: The table/view 'dbGreenSoftFinal.dbo.ProdutoCoperativa' does not h
           <EntitySet Name="PedidoItem" EntityType="Self.PedidoItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Produto" EntityType="Self.Produto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UnidadeFederativa" EntityType="Self.UnidadeFederativa" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ProdutoCoperativa" EntityType="Self.ProdutoCoperativa" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [ProdutoCoperativa].[Cooperativa_ID] AS [Cooperativa_ID], 
-    [ProdutoCoperativa].[Produto_ID] AS [Produto_ID], 
-    [ProdutoCoperativa].[Ativo] AS [Ativo]
-    FROM [dbo].[ProdutoCoperativa] AS [ProdutoCoperativa]</DefiningQuery>
-          </EntitySet>
+          <AssociationSet Name="FK_Cliente_UnidadeFederativa" Association="Self.FK_Cliente_UnidadeFederativa">
+            <End Role="UnidadeFederativa" EntitySet="UnidadeFederativa" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
           <AssociationSet Name="FK_Pedido_Cliente" Association="Self.FK_Pedido_Cliente">
             <End Role="Cliente" EntitySet="Cliente" />
             <End Role="Pedido" EntitySet="Pedido" />
@@ -229,21 +219,12 @@ warning 6002: The table/view 'dbGreenSoftFinal.dbo.ProdutoCoperativa' does not h
             <End Role="Produto" EntitySet="Produto" />
             <End Role="PedidoItem" EntitySet="PedidoItem" />
           </AssociationSet>
-          <AssociationSet Name="FK_ProdutoCoperativa_Cooperativa" Association="Self.FK_ProdutoCoperativa_Cooperativa">
-            <End Role="Cooperativa" EntitySet="Cooperativa" />
-            <End Role="ProdutoCoperativa" EntitySet="ProdutoCoperativa" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProdutoCoperativa_Produto" Association="Self.FK_ProdutoCoperativa_Produto">
-            <End Role="Produto" EntitySet="Produto" />
-            <End Role="ProdutoCoperativa" EntitySet="ProdutoCoperativa" />
-          </AssociationSet>
           <AssociationSet Name="FK_Usuario_Cooperativa" Association="Self.FK_Usuario_Cooperativa">
             <End Role="Cooperativa" EntitySet="Cooperativa" />
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="dbGreenSoftFinalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -258,12 +239,15 @@ warning 6002: The table/view 'dbGreenSoftFinal.dbo.ProdutoCoperativa' does not h
           <Property Name="Rua" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Numero" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Bairro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cidade" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Cep" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Uf" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="UF_ID" Type="Int32" Nullable="false" />
           <Property Name="Pais" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="DtCadastro" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Ativo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="UnidadeFederativa" Relationship="Self.FK_Cliente_UnidadeFederativa" FromRole="Cliente" ToRole="UnidadeFederativa" />
           <NavigationProperty Name="Pedido" Relationship="Self.FK_Pedido_Cliente" FromRole="Cliente" ToRole="Pedido" />
+          <Property Name="Imagem" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Cooperativa">
           <Key>
@@ -274,14 +258,13 @@ warning 6002: The table/view 'dbGreenSoftFinal.dbo.ProdutoCoperativa' does not h
           <Property Name="Cnpj" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Ativo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Pedido" Relationship="Self.FK_Pedido_Cooperativa" FromRole="Cooperativa" ToRole="Pedido" />
-          <NavigationProperty Name="ProdutoCoperativa" Relationship="Self.FK_ProdutoCoperativa_Cooperativa" FromRole="Cooperativa" ToRole="ProdutoCoperativa" />
           <NavigationProperty Name="Usuario" Relationship="Self.FK_Usuario_Cooperativa" FromRole="Cooperativa" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Pedido">
           <Key>
             <PropertyRef Name="Pedido_ID" />
           </Key>
-          <Property Name="Pedido_ID" Type="Int32" Nullable="false" />
+          <Property Name="Pedido_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Cliente_ID" Type="Int32" Nullable="false" />
           <Property Name="Cooperativa_ID" Type="Int32" Nullable="false" />
           <Property Name="Usuario_ID" Type="Int32" Nullable="false" />
@@ -291,14 +274,17 @@ warning 6002: The table/view 'dbGreenSoftFinal.dbo.ProdutoCoperativa' does not h
           <NavigationProperty Name="Cooperativa" Relationship="Self.FK_Pedido_Cooperativa" FromRole="Pedido" ToRole="Cooperativa" />
           <NavigationProperty Name="Usuario" Relationship="Self.FK_Pedido_Usuario" FromRole="Pedido" ToRole="Usuario" />
           <NavigationProperty Name="PedidoItem" Relationship="Self.FK_PedidoItem_Pedido" FromRole="Pedido" ToRole="PedidoItem" />
+          <Property Name="DtPedido" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="PedidoItem">
           <Key>
             <PropertyRef Name="Seq_ID" />
           </Key>
-          <Property Name="Seq_ID" Type="Int32" Nullable="false" />
+          <Property Name="Seq_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Pedido_ID" Type="Int32" Nullable="false" />
-          <Property Name="Produto_ID" Type="Int32" />
+          <Property Name="Produto_ID" Type="Int32" Nullable="false" />
+          <Property Name="DsProduto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Unidade" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Qtde" Type="Int32" Nullable="false" />
           <Property Name="Valor" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="ValorTotal" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
@@ -309,14 +295,14 @@ warning 6002: The table/view 'dbGreenSoftFinal.dbo.ProdutoCoperativa' does not h
           <Key>
             <PropertyRef Name="Produto_ID" />
           </Key>
-          <Property Name="Produto_ID" Type="Int32" Nullable="false" />
+          <Property Name="Produto_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Descricao" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Valor" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Unidade" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Estoque" Type="Int32" Nullable="false" />
           <Property Name="Ativo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="PedidoItem" Relationship="Self.FK_PedidoItem_Produto" FromRole="Produto" ToRole="PedidoItem" />
-          <NavigationProperty Name="ProdutoCoperativa" Relationship="Self.FK_ProdutoCoperativa_Produto" FromRole="Produto" ToRole="ProdutoCoperativa" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -327,6 +313,15 @@ warning 6002: The table/view 'dbGreenSoftFinal.dbo.ProdutoCoperativa' does not h
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="UnidadeFederativa">
+          <Key>
+            <PropertyRef Name="UF_ID" />
+          </Key>
+          <Property Name="UF_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descricao" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Sigla" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_Cliente_UnidadeFederativa" FromRole="UnidadeFederativa" ToRole="Cliente" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -339,21 +334,23 @@ warning 6002: The table/view 'dbGreenSoftFinal.dbo.ProdutoCoperativa' does not h
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Ativo" Type="Boolean" Nullable="false" />
           <Property Name="Cooperativa_ID" Type="Int32" Nullable="false" />
+          <Property Name="StBalcao" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Cooperativa" Relationship="Self.FK_Usuario_Cooperativa" FromRole="Usuario" ToRole="Cooperativa" />
           <NavigationProperty Name="Pedido" Relationship="Self.FK_Pedido_Usuario" FromRole="Usuario" ToRole="Pedido" />
+          <Property Name="Imagem" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="ProdutoCoperativa">
-          <Key>
-            <PropertyRef Name="Cooperativa_ID" />
-            <PropertyRef Name="Produto_ID" />
-            <PropertyRef Name="Ativo" />
-          </Key>
-          <Property Name="Cooperativa_ID" Type="Int32" Nullable="false" />
-          <Property Name="Produto_ID" Type="Int32" Nullable="false" />
-          <Property Name="Ativo" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Cooperativa" Relationship="Self.FK_ProdutoCoperativa_Cooperativa" FromRole="ProdutoCoperativa" ToRole="Cooperativa" />
-          <NavigationProperty Name="Produto" Relationship="Self.FK_ProdutoCoperativa_Produto" FromRole="ProdutoCoperativa" ToRole="Produto" />
-        </EntityType>
+        <Association Name="FK_Cliente_UnidadeFederativa">
+          <End Role="UnidadeFederativa" Type="Self.UnidadeFederativa" Multiplicity="1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnidadeFederativa">
+              <PropertyRef Name="UF_ID" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="UF_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Pedido_Cliente">
           <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
           <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
@@ -374,18 +371,6 @@ warning 6002: The table/view 'dbGreenSoftFinal.dbo.ProdutoCoperativa' does not h
               <PropertyRef Name="Cooperativa_ID" />
             </Principal>
             <Dependent Role="Pedido">
-              <PropertyRef Name="Cooperativa_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProdutoCoperativa_Cooperativa">
-          <End Role="Cooperativa" Type="Self.Cooperativa" Multiplicity="1" />
-          <End Role="ProdutoCoperativa" Type="Self.ProdutoCoperativa" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cooperativa">
-              <PropertyRef Name="Cooperativa_ID" />
-            </Principal>
-            <Dependent Role="ProdutoCoperativa">
               <PropertyRef Name="Cooperativa_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -427,25 +412,13 @@ warning 6002: The table/view 'dbGreenSoftFinal.dbo.ProdutoCoperativa' does not h
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PedidoItem_Produto">
-          <End Role="Produto" Type="Self.Produto" Multiplicity="0..1" />
+          <End Role="Produto" Type="Self.Produto" Multiplicity="1" />
           <End Role="PedidoItem" Type="Self.PedidoItem" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Produto">
               <PropertyRef Name="Produto_ID" />
             </Principal>
             <Dependent Role="PedidoItem">
-              <PropertyRef Name="Produto_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProdutoCoperativa_Produto">
-          <End Role="Produto" Type="Self.Produto" Multiplicity="1" />
-          <End Role="ProdutoCoperativa" Type="Self.ProdutoCoperativa" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Produto">
-              <PropertyRef Name="Produto_ID" />
-            </Principal>
-            <Dependent Role="ProdutoCoperativa">
               <PropertyRef Name="Produto_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -457,8 +430,12 @@ warning 6002: The table/view 'dbGreenSoftFinal.dbo.ProdutoCoperativa' does not h
           <EntitySet Name="PedidoItem" EntityType="Self.PedidoItem" />
           <EntitySet Name="Produto" EntityType="Self.Produto" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="UnidadeFederativa" EntityType="Self.UnidadeFederativa" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" />
-          <EntitySet Name="ProdutoCoperativa" EntityType="Self.ProdutoCoperativa" />
+          <AssociationSet Name="FK_Cliente_UnidadeFederativa" Association="Self.FK_Cliente_UnidadeFederativa">
+            <End Role="UnidadeFederativa" EntitySet="UnidadeFederativa" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
           <AssociationSet Name="FK_Pedido_Cliente" Association="Self.FK_Pedido_Cliente">
             <End Role="Cliente" EntitySet="Cliente" />
             <End Role="Pedido" EntitySet="Pedido" />
@@ -466,10 +443,6 @@ warning 6002: The table/view 'dbGreenSoftFinal.dbo.ProdutoCoperativa' does not h
           <AssociationSet Name="FK_Pedido_Cooperativa" Association="Self.FK_Pedido_Cooperativa">
             <End Role="Cooperativa" EntitySet="Cooperativa" />
             <End Role="Pedido" EntitySet="Pedido" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProdutoCoperativa_Cooperativa" Association="Self.FK_ProdutoCoperativa_Cooperativa">
-            <End Role="Cooperativa" EntitySet="Cooperativa" />
-            <End Role="ProdutoCoperativa" EntitySet="ProdutoCoperativa" />
           </AssociationSet>
           <AssociationSet Name="FK_Usuario_Cooperativa" Association="Self.FK_Usuario_Cooperativa">
             <End Role="Cooperativa" EntitySet="Cooperativa" />
@@ -487,10 +460,6 @@ warning 6002: The table/view 'dbGreenSoftFinal.dbo.ProdutoCoperativa' does not h
             <End Role="Produto" EntitySet="Produto" />
             <End Role="PedidoItem" EntitySet="PedidoItem" />
           </AssociationSet>
-          <AssociationSet Name="FK_ProdutoCoperativa_Produto" Association="Self.FK_ProdutoCoperativa_Produto">
-            <End Role="Produto" EntitySet="Produto" />
-            <End Role="ProdutoCoperativa" EntitySet="ProdutoCoperativa" />
-          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -501,6 +470,7 @@ warning 6002: The table/view 'dbGreenSoftFinal.dbo.ProdutoCoperativa' does not h
           <EntitySetMapping Name="Cliente">
             <EntityTypeMapping TypeName="dbGreenSoftFinalModel.Cliente">
               <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="Imagem" ColumnName="Imagem" />
                 <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
                 <ScalarProperty Name="Nome" ColumnName="Nome" />
                 <ScalarProperty Name="Cpf" ColumnName="Cpf" />
@@ -508,8 +478,9 @@ warning 6002: The table/view 'dbGreenSoftFinal.dbo.ProdutoCoperativa' does not h
                 <ScalarProperty Name="Rua" ColumnName="Rua" />
                 <ScalarProperty Name="Numero" ColumnName="Numero" />
                 <ScalarProperty Name="Bairro" ColumnName="Bairro" />
+                <ScalarProperty Name="Cidade" ColumnName="Cidade" />
                 <ScalarProperty Name="Cep" ColumnName="Cep" />
-                <ScalarProperty Name="Uf" ColumnName="Uf" />
+                <ScalarProperty Name="UF_ID" ColumnName="UF_ID" />
                 <ScalarProperty Name="Pais" ColumnName="Pais" />
                 <ScalarProperty Name="DtCadastro" ColumnName="DtCadastro" />
                 <ScalarProperty Name="Ativo" ColumnName="Ativo" />
@@ -529,6 +500,7 @@ warning 6002: The table/view 'dbGreenSoftFinal.dbo.ProdutoCoperativa' does not h
           <EntitySetMapping Name="Pedido">
             <EntityTypeMapping TypeName="dbGreenSoftFinalModel.Pedido">
               <MappingFragment StoreEntitySet="Pedido">
+                <ScalarProperty Name="DtPedido" ColumnName="DtPedido" />
                 <ScalarProperty Name="Pedido_ID" ColumnName="Pedido_ID" />
                 <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
                 <ScalarProperty Name="Cooperativa_ID" ColumnName="Cooperativa_ID" />
@@ -544,6 +516,8 @@ warning 6002: The table/view 'dbGreenSoftFinal.dbo.ProdutoCoperativa' does not h
                 <ScalarProperty Name="Seq_ID" ColumnName="Seq_ID" />
                 <ScalarProperty Name="Pedido_ID" ColumnName="Pedido_ID" />
                 <ScalarProperty Name="Produto_ID" ColumnName="Produto_ID" />
+                <ScalarProperty Name="DsProduto" ColumnName="DsProduto" />
+                <ScalarProperty Name="Unidade" ColumnName="Unidade" />
                 <ScalarProperty Name="Qtde" ColumnName="Qtde" />
                 <ScalarProperty Name="Valor" ColumnName="Valor" />
                 <ScalarProperty Name="ValorTotal" ColumnName="ValorTotal" />
@@ -553,6 +527,7 @@ warning 6002: The table/view 'dbGreenSoftFinal.dbo.ProdutoCoperativa' does not h
           <EntitySetMapping Name="Produto">
             <EntityTypeMapping TypeName="dbGreenSoftFinalModel.Produto">
               <MappingFragment StoreEntitySet="Produto">
+                <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Produto_ID" ColumnName="Produto_ID" />
                 <ScalarProperty Name="Descricao" ColumnName="Descricao" />
                 <ScalarProperty Name="Valor" ColumnName="Valor" />
@@ -573,9 +548,19 @@ warning 6002: The table/view 'dbGreenSoftFinal.dbo.ProdutoCoperativa' does not h
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="UnidadeFederativa">
+            <EntityTypeMapping TypeName="dbGreenSoftFinalModel.UnidadeFederativa">
+              <MappingFragment StoreEntitySet="UnidadeFederativa">
+                <ScalarProperty Name="UF_ID" ColumnName="UF_ID" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Sigla" ColumnName="Sigla" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Usuario">
             <EntityTypeMapping TypeName="dbGreenSoftFinalModel.Usuario">
               <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="Imagem" ColumnName="Imagem" />
                 <ScalarProperty Name="Usuario_ID" ColumnName="Usuario_ID" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Senha" ColumnName="Senha" />
@@ -583,15 +568,7 @@ warning 6002: The table/view 'dbGreenSoftFinal.dbo.ProdutoCoperativa' does not h
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Ativo" ColumnName="Ativo" />
                 <ScalarProperty Name="Cooperativa_ID" ColumnName="Cooperativa_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProdutoCoperativa">
-            <EntityTypeMapping TypeName="dbGreenSoftFinalModel.ProdutoCoperativa">
-              <MappingFragment StoreEntitySet="ProdutoCoperativa">
-                <ScalarProperty Name="Cooperativa_ID" ColumnName="Cooperativa_ID" />
-                <ScalarProperty Name="Produto_ID" ColumnName="Produto_ID" />
-                <ScalarProperty Name="Ativo" ColumnName="Ativo" />
+                <ScalarProperty Name="StBalcao" ColumnName="StBalcao" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

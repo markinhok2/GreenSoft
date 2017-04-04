@@ -27,6 +27,8 @@ namespace GreenSoft_Balcao.Data
         public string Email { get; set; }
         public bool Ativo { get; set; }
         public int Cooperativa_ID { get; set; }
+        public bool StBalcao { get; set; }
+        public string Imagem { get; set; }
     
         public virtual Cooperativa Cooperativa { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

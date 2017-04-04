@@ -31,7 +31,7 @@ namespace GreenSoft_Balcao.Data
         public virtual DbSet<PedidoItem> PedidoItem { get; set; }
         public virtual DbSet<Produto> Produto { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<UnidadeFederativa> UnidadeFederativa { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
-        public virtual DbSet<ProdutoCoperativa> ProdutoCoperativa { get; set; }
     }
 }

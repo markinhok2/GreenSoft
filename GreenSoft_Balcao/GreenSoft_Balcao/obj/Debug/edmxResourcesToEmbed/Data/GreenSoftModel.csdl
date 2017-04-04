@@ -3,6 +3,7 @@
   <EntityType Name="Cliente">
     <Key>
       <PropertyRef Name="Cliente_ID" />
+      <PropertyRef Name="ClienteID" />
     </Key>
     <Property Name="Cliente_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
@@ -13,10 +14,22 @@
     <Property Name="Bairro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Cep" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Uf" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="Pais" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Pais" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
     <Property Name="DtCadastro" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="Ativo" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Pedido" Relationship="Self.FK_Pedido_Cliente" FromRole="Cliente" ToRole="Pedido" />
+    <Property Name="ClienteID" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="true" />
+    <Property Name="NomeEmpresa" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="NomeContato" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="CargoContato" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Endereco" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="Cidade" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Regiao" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="CEP" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Telefone" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+    <Property Name="Fax" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Pedido1" Relationship="dbGreenSoftFinalModel.FK_Pedido_Cliente1" FromRole="Cliente" ToRole="Pedido" />
+    <NavigationProperty Name="ClienteDemographics" Relationship="dbGreenSoftFinalModel.ClienteClienteDemo" FromRole="Cliente" ToRole="ClienteDemographics" />
   </EntityType>
   <EntityType Name="Cooperativa">
     <Key>
@@ -33,6 +46,7 @@
   <EntityType Name="Pedido">
     <Key>
       <PropertyRef Name="Pedido_ID" />
+      <PropertyRef Name="PedidoID" />
     </Key>
     <Property Name="Pedido_ID" Type="Int32" Nullable="false" />
     <Property Name="Cliente_ID" Type="Int32" Nullable="false" />
@@ -44,6 +58,24 @@
     <NavigationProperty Name="Cooperativa" Relationship="Self.FK_Pedido_Cooperativa" FromRole="Pedido" ToRole="Cooperativa" />
     <NavigationProperty Name="Usuario" Relationship="Self.FK_Pedido_Usuario" FromRole="Pedido" ToRole="Usuario" />
     <NavigationProperty Name="PedidoItem" Relationship="Self.FK_PedidoItem_Pedido" FromRole="Pedido" ToRole="PedidoItem" />
+    <Property Name="PedidoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClienteID" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+    <Property Name="FuncionarioID" Type="Int32" />
+    <Property Name="DataPedido" Type="DateTime" Precision="3" />
+    <Property Name="DataRequisicao" Type="DateTime" Precision="3" />
+    <Property Name="DataTransporte" Type="DateTime" Precision="3" />
+    <Property Name="ViaTransporte" Type="Int32" />
+    <Property Name="Frete" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="NomeTransporte" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="EnderecoEntrega" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="CidadeEntrega" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="ShipRegiao" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="CEPEntrega" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="PaisEntrega" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Cliente1" Relationship="dbGreenSoftFinalModel.FK_Pedido_Cliente1" FromRole="Pedido" ToRole="Cliente" />
+    <NavigationProperty Name="DetalhesPedido" Relationship="dbGreenSoftFinalModel.FK_Order_Details_Pedido" FromRole="Pedido" ToRole="DetalhesPedido" />
+    <NavigationProperty Name="Funcionario" Relationship="dbGreenSoftFinalModel.FK_Pedido_Funcionario" FromRole="Pedido" ToRole="Funcionario" />
+    <NavigationProperty Name="Transportadora" Relationship="dbGreenSoftFinalModel.FK_Pedido_Transportadora" FromRole="Pedido" ToRole="Transportadora" />
   </EntityType>
   <EntityType Name="PedidoItem">
     <Key>
@@ -61,6 +93,7 @@
   <EntityType Name="Produto">
     <Key>
       <PropertyRef Name="Produto_ID" />
+      <PropertyRef Name="ProdutoID" />
     </Key>
     <Property Name="Produto_ID" Type="Int32" Nullable="false" />
     <Property Name="Descricao" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
@@ -70,6 +103,19 @@
     <Property Name="Ativo" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="PedidoItem" Relationship="Self.FK_PedidoItem_Produto" FromRole="Produto" ToRole="PedidoItem" />
     <NavigationProperty Name="ProdutoCoperativa" Relationship="Self.FK_ProdutoCoperativa_Produto" FromRole="Produto" ToRole="ProdutoCoperativa" />
+    <Property Name="ProdutoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NomeProduto" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="FornecedorID" Type="Int32" />
+    <Property Name="CategoriaID" Type="Int32" />
+    <Property Name="QuantidadePorUn" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="PrecoUnitario" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="QuantidadeDisponivel" Type="Int16" />
+    <Property Name="UnidadesPedido" Type="Int16" />
+    <Property Name="NivelReabastecimento" Type="Int16" />
+    <Property Name="Depreciado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Categoria" Relationship="dbGreenSoftFinalModel.FK_Produto_Categoria" FromRole="Produto" ToRole="Categoria" />
+    <NavigationProperty Name="DetalhesPedido" Relationship="dbGreenSoftFinalModel.FK_Order_Details_Produto" FromRole="Produto" ToRole="DetalhesPedido" />
+    <NavigationProperty Name="Fornecedor" Relationship="dbGreenSoftFinalModel.FK_Produto_Fornecedor" FromRole="Produto" ToRole="Fornecedor" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -244,5 +290,276 @@
       <End Role="Produto" EntitySet="Produto" />
       <End Role="ProdutoCoperativa" EntitySet="ProdutoCoperativa" />
     </AssociationSet>
+    <EntitySet Name="Categoria" EntityType="dbGreenSoftFinalModel.Categoria" />
+    <EntitySet Name="ClienteDemographics" EntityType="dbGreenSoftFinalModel.ClienteDemographics" />
+    <EntitySet Name="DetalhesPedido" EntityType="dbGreenSoftFinalModel.DetalhesPedido" />
+    <EntitySet Name="Fornecedor" EntityType="dbGreenSoftFinalModel.Fornecedor" />
+    <EntitySet Name="Funcionario" EntityType="dbGreenSoftFinalModel.Funcionario" />
+    <EntitySet Name="Regiao" EntityType="dbGreenSoftFinalModel.Regiao" />
+    <EntitySet Name="Territorio" EntityType="dbGreenSoftFinalModel.Territorio" />
+    <EntitySet Name="Transportadora" EntityType="dbGreenSoftFinalModel.Transportadora" />
+    <AssociationSet Name="FK_Produto_Categoria" Association="dbGreenSoftFinalModel.FK_Produto_Categoria">
+      <End Role="Categoria" EntitySet="Categoria" />
+      <End Role="Produto" EntitySet="Produto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pedido_Cliente1" Association="dbGreenSoftFinalModel.FK_Pedido_Cliente1">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="Pedido" EntitySet="Pedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Details_Pedido" Association="dbGreenSoftFinalModel.FK_Order_Details_Pedido">
+      <End Role="Pedido" EntitySet="Pedido" />
+      <End Role="DetalhesPedido" EntitySet="DetalhesPedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Details_Produto" Association="dbGreenSoftFinalModel.FK_Order_Details_Produto">
+      <End Role="Produto" EntitySet="Produto" />
+      <End Role="DetalhesPedido" EntitySet="DetalhesPedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Produto_Fornecedor" Association="dbGreenSoftFinalModel.FK_Produto_Fornecedor">
+      <End Role="Fornecedor" EntitySet="Fornecedor" />
+      <End Role="Produto" EntitySet="Produto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Funcionario_Funcionario" Association="dbGreenSoftFinalModel.FK_Funcionario_Funcionario">
+      <End Role="Funcionario" EntitySet="Funcionario" />
+      <End Role="Funcionario1" EntitySet="Funcionario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pedido_Funcionario" Association="dbGreenSoftFinalModel.FK_Pedido_Funcionario">
+      <End Role="Funcionario" EntitySet="Funcionario" />
+      <End Role="Pedido" EntitySet="Pedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pedido_Transportadora" Association="dbGreenSoftFinalModel.FK_Pedido_Transportadora">
+      <End Role="Transportadora" EntitySet="Transportadora" />
+      <End Role="Pedido" EntitySet="Pedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Territorio_Regiao" Association="dbGreenSoftFinalModel.FK_Territorio_Regiao">
+      <End Role="Regiao" EntitySet="Regiao" />
+      <End Role="Territorio" EntitySet="Territorio" />
+    </AssociationSet>
+    <AssociationSet Name="ClienteClienteDemo" Association="dbGreenSoftFinalModel.ClienteClienteDemo">
+      <End Role="ClienteDemographics" EntitySet="ClienteDemographics" />
+      <End Role="Cliente" EntitySet="Cliente" />
+    </AssociationSet>
+    <AssociationSet Name="FuncionarioTerritorio" Association="dbGreenSoftFinalModel.FuncionarioTerritorio">
+      <End Role="Funcionario" EntitySet="Funcionario" />
+      <End Role="Territorio" EntitySet="Territorio" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="Categoria">
+    <Key>
+      <PropertyRef Name="CategoriaID" />
+    </Key>
+    <Property Name="CategoriaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NomeCategoria" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Descricao" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Imagem" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Produto" Relationship="dbGreenSoftFinalModel.FK_Produto_Categoria" FromRole="Categoria" ToRole="Produto" />
+  </EntityType>
+  <EntityType Name="ClienteDemographics">
+    <Key>
+      <PropertyRef Name="ClienteTypeID" />
+    </Key>
+    <Property Name="ClienteTypeID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="ClienteDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Cliente" Relationship="dbGreenSoftFinalModel.ClienteClienteDemo" FromRole="ClienteDemographics" ToRole="Cliente" />
+  </EntityType>
+  <EntityType Name="DetalhesPedido">
+    <Key>
+      <PropertyRef Name="PedidoID" />
+      <PropertyRef Name="ProdutoID" />
+    </Key>
+    <Property Name="PedidoID" Type="Int32" Nullable="false" />
+    <Property Name="ProdutoID" Type="Int32" Nullable="false" />
+    <Property Name="PrecoUnitario" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="Quantity" Type="Int16" Nullable="false" />
+    <Property Name="Desconto" Type="Single" Nullable="false" />
+    <NavigationProperty Name="Pedido" Relationship="dbGreenSoftFinalModel.FK_Order_Details_Pedido" FromRole="DetalhesPedido" ToRole="Pedido" />
+    <NavigationProperty Name="Produto" Relationship="dbGreenSoftFinalModel.FK_Order_Details_Produto" FromRole="DetalhesPedido" ToRole="Produto" />
+  </EntityType>
+  <EntityType Name="Fornecedor">
+    <Key>
+      <PropertyRef Name="FornecedorID" />
+    </Key>
+    <Property Name="FornecedorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NomeEmpresa" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="NomeContato" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="CargoContato" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Endereco" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="Cidade" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Regiao" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="CEP" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Pais" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Telefone" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+    <Property Name="Fax" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+    <Property Name="HomePage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Produto" Relationship="dbGreenSoftFinalModel.FK_Produto_Fornecedor" FromRole="Fornecedor" ToRole="Produto" />
+  </EntityType>
+  <EntityType Name="Funcionario">
+    <Key>
+      <PropertyRef Name="FuncionarioID" />
+    </Key>
+    <Property Name="FuncionarioID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UltimoNome" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="PrimeiroNome" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Cargo" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Funcao" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="DataNascimento" Type="DateTime" Precision="3" />
+    <Property Name="DataContratacao" Type="DateTime" Precision="3" />
+    <Property Name="Endereco" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="Cidade" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Regiao" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="CEP" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Pais" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="TelResidencial" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+    <Property Name="Extensao" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="Foto" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Superior" Type="Int32" />
+    <Property Name="CaminhoFoto" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Funcionario1" Relationship="dbGreenSoftFinalModel.FK_Funcionario_Funcionario" FromRole="Funcionario" ToRole="Funcionario1" />
+    <NavigationProperty Name="Funcionario2" Relationship="dbGreenSoftFinalModel.FK_Funcionario_Funcionario" FromRole="Funcionario1" ToRole="Funcionario" />
+    <NavigationProperty Name="Pedido" Relationship="dbGreenSoftFinalModel.FK_Pedido_Funcionario" FromRole="Funcionario" ToRole="Pedido" />
+    <NavigationProperty Name="Territorio" Relationship="dbGreenSoftFinalModel.FuncionarioTerritorio" FromRole="Funcionario" ToRole="Territorio" />
+  </EntityType>
+  <EntityType Name="Regiao">
+    <Key>
+      <PropertyRef Name="RegiaoID" />
+    </Key>
+    <Property Name="RegiaoID" Type="Int32" Nullable="false" />
+    <Property Name="RegiaoDescricao" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Territorio" Relationship="dbGreenSoftFinalModel.FK_Territorio_Regiao" FromRole="Regiao" ToRole="Territorio" />
+  </EntityType>
+  <EntityType Name="Territorio">
+    <Key>
+      <PropertyRef Name="TerritorioID" />
+    </Key>
+    <Property Name="TerritorioID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="TerritorioDescricao" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="RegiaoID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Regiao" Relationship="dbGreenSoftFinalModel.FK_Territorio_Regiao" FromRole="Territorio" ToRole="Regiao" />
+    <NavigationProperty Name="Funcionario" Relationship="dbGreenSoftFinalModel.FuncionarioTerritorio" FromRole="Territorio" ToRole="Funcionario" />
+  </EntityType>
+  <EntityType Name="Transportadora">
+    <Key>
+      <PropertyRef Name="TransportadoraID" />
+    </Key>
+    <Property Name="TransportadoraID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NomeEmpresa" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Telefone" Type="String" MaxLength="24" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Pedido" Relationship="dbGreenSoftFinalModel.FK_Pedido_Transportadora" FromRole="Transportadora" ToRole="Pedido" />
+  </EntityType>
+  <Association Name="FK_Produto_Categoria">
+    <End Type="dbGreenSoftFinalModel.Categoria" Role="Categoria" Multiplicity="0..1" />
+    <End Type="dbGreenSoftFinalModel.Produto" Role="Produto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categoria">
+        <PropertyRef Name="CategoriaID" />
+      </Principal>
+      <Dependent Role="Produto">
+        <PropertyRef Name="CategoriaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pedido_Cliente1">
+    <End Type="dbGreenSoftFinalModel.Cliente" Role="Cliente" Multiplicity="0..1" />
+    <End Type="dbGreenSoftFinalModel.Pedido" Role="Pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="ClienteID" />
+      </Principal>
+      <Dependent Role="Pedido">
+        <PropertyRef Name="ClienteID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Details_Pedido">
+    <End Type="dbGreenSoftFinalModel.Pedido" Role="Pedido" Multiplicity="1" />
+    <End Type="dbGreenSoftFinalModel.DetalhesPedido" Role="DetalhesPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pedido">
+        <PropertyRef Name="PedidoID" />
+      </Principal>
+      <Dependent Role="DetalhesPedido">
+        <PropertyRef Name="PedidoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Details_Produto">
+    <End Type="dbGreenSoftFinalModel.Produto" Role="Produto" Multiplicity="1" />
+    <End Type="dbGreenSoftFinalModel.DetalhesPedido" Role="DetalhesPedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Produto">
+        <PropertyRef Name="ProdutoID" />
+      </Principal>
+      <Dependent Role="DetalhesPedido">
+        <PropertyRef Name="ProdutoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Produto_Fornecedor">
+    <End Type="dbGreenSoftFinalModel.Fornecedor" Role="Fornecedor" Multiplicity="0..1" />
+    <End Type="dbGreenSoftFinalModel.Produto" Role="Produto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Fornecedor">
+        <PropertyRef Name="FornecedorID" />
+      </Principal>
+      <Dependent Role="Produto">
+        <PropertyRef Name="FornecedorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Funcionario_Funcionario">
+    <End Type="dbGreenSoftFinalModel.Funcionario" Role="Funcionario" Multiplicity="0..1" />
+    <End Type="dbGreenSoftFinalModel.Funcionario" Role="Funcionario1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Funcionario">
+        <PropertyRef Name="FuncionarioID" />
+      </Principal>
+      <Dependent Role="Funcionario1">
+        <PropertyRef Name="Superior" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pedido_Funcionario">
+    <End Type="dbGreenSoftFinalModel.Funcionario" Role="Funcionario" Multiplicity="0..1" />
+    <End Type="dbGreenSoftFinalModel.Pedido" Role="Pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Funcionario">
+        <PropertyRef Name="FuncionarioID" />
+      </Principal>
+      <Dependent Role="Pedido">
+        <PropertyRef Name="FuncionarioID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pedido_Transportadora">
+    <End Type="dbGreenSoftFinalModel.Transportadora" Role="Transportadora" Multiplicity="0..1" />
+    <End Type="dbGreenSoftFinalModel.Pedido" Role="Pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Transportadora">
+        <PropertyRef Name="TransportadoraID" />
+      </Principal>
+      <Dependent Role="Pedido">
+        <PropertyRef Name="ViaTransporte" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Territorio_Regiao">
+    <End Type="dbGreenSoftFinalModel.Regiao" Role="Regiao" Multiplicity="1" />
+    <End Type="dbGreenSoftFinalModel.Territorio" Role="Territorio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Regiao">
+        <PropertyRef Name="RegiaoID" />
+      </Principal>
+      <Dependent Role="Territorio">
+        <PropertyRef Name="RegiaoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ClienteClienteDemo">
+    <End Type="dbGreenSoftFinalModel.ClienteDemographics" Role="ClienteDemographics" Multiplicity="*" />
+    <End Type="dbGreenSoftFinalModel.Cliente" Role="Cliente" Multiplicity="*" />
+  </Association>
+  <Association Name="FuncionarioTerritorio">
+    <End Type="dbGreenSoftFinalModel.Funcionario" Role="Funcionario" Multiplicity="*" />
+    <End Type="dbGreenSoftFinalModel.Territorio" Role="Territorio" Multiplicity="*" />
+  </Association>
 </Schema>

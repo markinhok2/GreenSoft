@@ -18,7 +18,6 @@ namespace GreenSoft_Balcao.Data
         public Cooperativa()
         {
             this.Pedido = new HashSet<Pedido>();
-            this.ProdutoCoperativa = new HashSet<ProdutoCoperativa>();
             this.Usuario = new HashSet<Usuario>();
         }
     
@@ -29,8 +28,6 @@ namespace GreenSoft_Balcao.Data
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pedido> Pedido { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProdutoCoperativa> ProdutoCoperativa { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Usuario> Usuario { get; set; }
     }

@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Marcos Aurelio\Documents\GreenSoft\GreenSoft_Balcao\GreenSoft_Balcao\Data\GreenSoftModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Marcos Aurelio\Documents\GreenSoft\GreenSoft_Balcao\GreenSoft_Balcao\Data\GreenProjectModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

@@ -18,7 +18,6 @@ namespace GreenSoft_Balcao.Data
         public Produto()
         {
             this.PedidoItem = new HashSet<PedidoItem>();
-            this.ProdutoCoperativa = new HashSet<ProdutoCoperativa>();
         }
     
         public int Produto_ID { get; set; }
@@ -27,10 +26,9 @@ namespace GreenSoft_Balcao.Data
         public string Unidade { get; set; }
         public int Estoque { get; set; }
         public bool Ativo { get; set; }
+        public string Image { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PedidoItem> PedidoItem { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProdutoCoperativa> ProdutoCoperativa { get; set; }
     }
 }

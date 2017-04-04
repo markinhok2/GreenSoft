@@ -16,7 +16,9 @@ namespace GreenSoft_Balcao.Data
     {
         public int Seq_ID { get; set; }
         public int Pedido_ID { get; set; }
-        public Nullable<int> Produto_ID { get; set; }
+        public int Produto_ID { get; set; }
+        public string DsProduto { get; set; }
+        public string Unidade { get; set; }
         public int Qtde { get; set; }
         public decimal Valor { get; set; }
         public decimal ValorTotal { get; set; }

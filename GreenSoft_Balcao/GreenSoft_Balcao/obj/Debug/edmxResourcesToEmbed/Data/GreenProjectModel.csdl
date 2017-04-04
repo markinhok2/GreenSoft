@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbGreenSoftFinalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="Cliente_ID" />
+    </Key>
+    <Property Name="Cliente_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Cpf" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DtNascimento" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Rua" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Numero" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Bairro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Cidade" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Cep" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UF_ID" Type="Int32" Nullable="false" />
+    <Property Name="Pais" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="DtCadastro" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Ativo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="UnidadeFederativa" Relationship="Self.FK_Cliente_UnidadeFederativa" FromRole="Cliente" ToRole="UnidadeFederativa" />
+    <NavigationProperty Name="Pedido" Relationship="Self.FK_Pedido_Cliente" FromRole="Cliente" ToRole="Pedido" />
+    <Property Name="Imagem" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Cooperativa">
+    <Key>
+      <PropertyRef Name="Cooperativa_ID" />
+    </Key>
+    <Property Name="Cooperativa_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Razao" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Cnpj" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Ativo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Pedido" Relationship="Self.FK_Pedido_Cooperativa" FromRole="Cooperativa" ToRole="Pedido" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_Usuario_Cooperativa" FromRole="Cooperativa" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Pedido">
+    <Key>
+      <PropertyRef Name="Pedido_ID" />
+    </Key>
+    <Property Name="Pedido_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Cliente_ID" Type="Int32" Nullable="false" />
+    <Property Name="Cooperativa_ID" Type="Int32" Nullable="false" />
+    <Property Name="Usuario_ID" Type="Int32" Nullable="false" />
+    <Property Name="ValorTotal" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Cliente" Relationship="Self.FK_Pedido_Cliente" FromRole="Pedido" ToRole="Cliente" />
+    <NavigationProperty Name="Cooperativa" Relationship="Self.FK_Pedido_Cooperativa" FromRole="Pedido" ToRole="Cooperativa" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_Pedido_Usuario" FromRole="Pedido" ToRole="Usuario" />
+    <NavigationProperty Name="PedidoItem" Relationship="Self.FK_PedidoItem_Pedido" FromRole="Pedido" ToRole="PedidoItem" />
+    <Property Name="DtPedido" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="PedidoItem">
+    <Key>
+      <PropertyRef Name="Seq_ID" />
+    </Key>
+    <Property Name="Seq_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Pedido_ID" Type="Int32" Nullable="false" />
+    <Property Name="Produto_ID" Type="Int32" Nullable="false" />
+    <Property Name="DsProduto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Unidade" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Qtde" Type="Int32" Nullable="false" />
+    <Property Name="Valor" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="ValorTotal" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <NavigationProperty Name="Pedido" Relationship="Self.FK_PedidoItem_Pedido" FromRole="PedidoItem" ToRole="Pedido" />
+    <NavigationProperty Name="Produto" Relationship="Self.FK_PedidoItem_Produto" FromRole="PedidoItem" ToRole="Produto" />
+  </EntityType>
+  <EntityType Name="Produto">
+    <Key>
+      <PropertyRef Name="Produto_ID" />
+    </Key>
+    <Property Name="Produto_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descricao" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Valor" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Unidade" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Estoque" Type="Int32" Nullable="false" />
+    <Property Name="Ativo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="PedidoItem" Relationship="Self.FK_PedidoItem_Produto" FromRole="Produto" ToRole="PedidoItem" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="UnidadeFederativa">
+    <Key>
+      <PropertyRef Name="UF_ID" />
+    </Key>
+    <Property Name="UF_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descricao" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Sigla" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Cliente" Relationship="Self.FK_Cliente_UnidadeFederativa" FromRole="UnidadeFederativa" ToRole="Cliente" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="Usuario_ID" />
+    </Key>
+    <Property Name="Usuario_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Senha" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Ativo" Type="Boolean" Nullable="false" />
+    <Property Name="Cooperativa_ID" Type="Int32" Nullable="false" />
+    <Property Name="StBalcao" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Cooperativa" Relationship="Self.FK_Usuario_Cooperativa" FromRole="Usuario" ToRole="Cooperativa" />
+    <NavigationProperty Name="Pedido" Relationship="Self.FK_Pedido_Usuario" FromRole="Usuario" ToRole="Pedido" />
+    <Property Name="Imagem" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_Cliente_UnidadeFederativa">
+    <End Role="UnidadeFederativa" Type="Self.UnidadeFederativa" Multiplicity="1" />
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UnidadeFederativa">
+        <PropertyRef Name="UF_ID" />
+      </Principal>
+      <Dependent Role="Cliente">
+        <PropertyRef Name="UF_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pedido_Cliente">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+    <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="Cliente_ID" />
+      </Principal>
+      <Dependent Role="Pedido">
+        <PropertyRef Name="Cliente_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pedido_Cooperativa">
+    <End Role="Cooperativa" Type="Self.Cooperativa" Multiplicity="1" />
+    <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cooperativa">
+        <PropertyRef Name="Cooperativa_ID" />
+      </Principal>
+      <Dependent Role="Pedido">
+        <PropertyRef Name="Cooperativa_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuario_Cooperativa">
+    <End Role="Cooperativa" Type="Self.Cooperativa" Multiplicity="1" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cooperativa">
+        <PropertyRef Name="Cooperativa_ID" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="Cooperativa_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pedido_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Usuario_ID" />
+      </Principal>
+      <Dependent Role="Pedido">
+        <PropertyRef Name="Usuario_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PedidoItem_Pedido">
+    <End Role="Pedido" Type="Self.Pedido" Multiplicity="1" />
+    <End Role="PedidoItem" Type="Self.PedidoItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pedido">
+        <PropertyRef Name="Pedido_ID" />
+      </Principal>
+      <Dependent Role="PedidoItem">
+        <PropertyRef Name="Pedido_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PedidoItem_Produto">
+    <End Role="Produto" Type="Self.Produto" Multiplicity="1" />
+    <End Role="PedidoItem" Type="Self.PedidoItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Produto">
+        <PropertyRef Name="Produto_ID" />
+      </Principal>
+      <Dependent Role="PedidoItem">
+        <PropertyRef Name="Produto_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbGreenSoftFinalEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+    <EntitySet Name="Cooperativa" EntityType="Self.Cooperativa" />
+    <EntitySet Name="Pedido" EntityType="Self.Pedido" />
+    <EntitySet Name="PedidoItem" EntityType="Self.PedidoItem" />
+    <EntitySet Name="Produto" EntityType="Self.Produto" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="UnidadeFederativa" EntityType="Self.UnidadeFederativa" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+    <AssociationSet Name="FK_Cliente_UnidadeFederativa" Association="Self.FK_Cliente_UnidadeFederativa">
+      <End Role="UnidadeFederativa" EntitySet="UnidadeFederativa" />
+      <End Role="Cliente" EntitySet="Cliente" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pedido_Cliente" Association="Self.FK_Pedido_Cliente">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="Pedido" EntitySet="Pedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pedido_Cooperativa" Association="Self.FK_Pedido_Cooperativa">
+      <End Role="Cooperativa" EntitySet="Cooperativa" />
+      <End Role="Pedido" EntitySet="Pedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuario_Cooperativa" Association="Self.FK_Usuario_Cooperativa">
+      <End Role="Cooperativa" EntitySet="Cooperativa" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pedido_Usuario" Association="Self.FK_Pedido_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Pedido" EntitySet="Pedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PedidoItem_Pedido" Association="Self.FK_PedidoItem_Pedido">
+      <End Role="Pedido" EntitySet="Pedido" />
+      <End Role="PedidoItem" EntitySet="PedidoItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PedidoItem_Produto" Association="Self.FK_PedidoItem_Produto">
+      <End Role="Produto" EntitySet="Produto" />
+      <End Role="PedidoItem" EntitySet="PedidoItem" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
